@@ -1,1 +1,22 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: bug_report.yml
+    about: Something isn't working as expected? Create a report to help us improve.
+    context:
+        button-text: Get Started
+  - name: Feature Request 
+    url: feature_request.yml
+    about: Suggest an idea for this project
+    context:
+        button-text: Get Started
+  - name: Feature Request 
+    url: documentation.yml
+    about: Report an issue in the API Reference documentation or Developer Guide.
+    context:
+        button-text: Get Started
+  - name: Questions/Help
+    url: questions_help.yml
+    about: Create a new issue. If you don't know which type to choose, choose this one.
+    context:
+        button-text: Get Started
