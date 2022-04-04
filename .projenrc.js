@@ -2,7 +2,7 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '2.19.0',
   license: 'MIT-0',
-  author: 'Amazon.com, Inc.',
+  author: 'Court Schuett',
   copyrightOwner: 'Amazon.com, Inc.',
   authorAddress: 'https://aws.amazon.com',
   appEntrypoint: 'pstn-audio-lex-contact-center.ts',

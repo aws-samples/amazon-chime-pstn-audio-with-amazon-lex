@@ -1,14 +1,14 @@
-## Amazon Chime SDK Lex Bot for Existing Contact Centers - Contact Center Intelligence
+## Amazon Chime SDK With Amazon Lex Bot for Existing Contact Centers - Contact Center Intelligence
 
-### Overview
+## Overview
 
 ![Overview](images/Lex-CCI.png)
 
 This will demonstrate how you can add an Amazon Lex Bot to an existing Contact Center. In this example, an Amazon Chime Voice Connector will be used to deliver PSTN calls but any carrier can be used in your environment.
 
-### How It Works
+## How It Works
 
-#### Inbound Call from PSTN
+### Inbound Call from PSTN
 
 After deploying the CDK, a phone number and `aws ssm` command will be provided to you:
 
@@ -42,7 +42,7 @@ X-CallId: 66506309
 
 In this example SIP INVITE from the Asterisk to the Amazon Chime Voice Connector, the original-calling-number is passed as the FROM number and a new number is used as the TO number. This number does not need to be a number in your Amazon Chime Phone Inventory. The X-CallId is added as a unique identifier for correlation purposes.
 
-#### Triggering the PSTN Audio
+### Triggering the PSTN Audio
 
 To deliver the call to the PSTN Audio via SIP, the call is sent to Amazon Chime Voice Connector. This Amazon Chime Voice Connector is configured as the Trigger Value for the SIP Rule.
 
@@ -50,7 +50,7 @@ To deliver the call to the PSTN Audio via SIP, the call is sent to Amazon Chime 
 
 This SIP Rule targets a SIP media application that is associated with an AWS Lambda that will be triggered when a call is made to that Amazon Chime Voice Connector. This is how a SIP call can be made from an existing Contact Center to an Amazon Chime PSTN Audio SIP media application.
 
-#### Using the PSTN Audio handler
+### Using the PSTN Audio handler
 
 The SIP media application handler Lambda will be invoked with an event similar to this:
 
@@ -129,9 +129,9 @@ The resulting `startBotConversationAction` sent to the SIP media application wil
 
 This will begin the conversation between the caller on the PSTN and the Amazon Lex Bot.
 
-#### Post Lex Processing
+### Post Amazon Lex Processing
 
-Once the conversation with the Lex Bot has completed, it will invoke the SIP media application Lambda with the full results of the Lex Bot conversation. Below is a trimmed example showing an `ACTION_SUCCESSFUL` invocation after a `StartBotConversation` action.
+Once the conversation with the Amazon Lex Bot has completed, it will invoke the SIP media application Lambda with the full results of the Amazon Lex Bot conversation. Below is a trimmed example showing an `ACTION_SUCCESSFUL` invocation after a `StartBotConversation` action.
 
 ```json
 {
@@ -237,13 +237,13 @@ if (
 The DynamoDB table will now look like this:
 ![DynamoDB](images/DynamoDB.png)
 
-#### Delivering to Agent
+### Delivering to Agent
 
 The `hangupAction` from the SIP media application returns the call to the Asterisk PBX. In this example, if the `TransferFunds` Intent is used, the call is sent to an Agent using a web client based SIP phone. This client will then query the DynamoDB table for the information captured from the Lex Bot. Your environment may have different devices and configurations. If the `CheckBalance` intent is used, the Asterisk PBX will Hangup the call.
 
 [AsteriskConfiguration](resources/asteriskConfig/extensions.conf)
 
-##### Call Routing
+#### Call Routing
 
 ```asterisk
 same => n,Set(CALL_ROUTE=${SHELL(curl --silent API_URLquery?xCallId=${CallId} | jq -r .CallRoute )})
@@ -251,9 +251,9 @@ same => n,NoOp(${CALL_ROUTE})
 same => n,GotoIf($[${CALL_ROUTE} = CallAgent]?callAgent:disconnect)
 ```
 
-The Intent that was used is determined by a query from the PBX to the DynamoDB where the call information was stored. In this example, if the caller used `CheckBalance`, that information would be stored in the DynamoDB by the smaHandler Lambda and the call would be disconnected. However, if the caller used `TransferFunds`, they would be connected to an Agent. This is an exmaple of how the Lex Bot can be used for deflection in the case of self-service and intelligent routing when required.
+The Intent that was used is determined by a query from the PBX to the DynamoDB where the call information was stored. In this example, if the caller used `CheckBalance`, that information would be stored in the DynamoDB by the smaHandler Lambda and the call would be disconnected. However, if the caller used `TransferFunds`, they would be connected to an Agent. This is an exmaple of how the Amazon Lex Bot can be used for deflection in the case of self-service and intelligent routing when required.
 
-##### INVITE to Agent
+#### INVITE to Agent
 
 ```sip
 INVITE sip:rm68qs0l@173.25.202.6:50131;transport=ws SIP/2.0
@@ -265,7 +265,7 @@ X-CallId: 66506309
 
 ![Answered](images/Answered.png)
 
-When answered, the client will display the results of the query to the DynamoDB table that contains the information the caller gave to the Lex Bot.
+When answered, the client will display the results of the query to the DynamoDB table that contains the information the caller gave to the Amazon Lex Bot.
 
 [LexData.js](site/src/LexData.js)
 
@@ -288,34 +288,34 @@ async function dataDipByXCallId(xCallId) {
 }
 ```
 
-### Components Deployed
+## Components Deployed
 
 - Amazon Chime Voice Connector - PSTN Access w/DID
 - Amazon Chime Voice Connector - PSTN Audio
 - AWS Lambda - SIP media application Handler
 - AWS Lambda - Call Query
-- API Gateway - Call Query
-- Cognito UserPool
+- Amazon API Gateway - Call Query
+- Amazon Cognito UserPool
 - AWS EC2 - Asterisk Server
 - AWS DynamoDB - Call Info Table
-- AWS Lex Bot - Book Hotel sample bot
+- Amazon Lex Bot - Banker Bot Demo
 
-### Deployment
+## Deployment
 
-#### Requirements
+### Requirements
 
 - [Nodev12+](https://nodejs.org/en/download/) installed
 - [yarn](https://yarnpkg.com/getting-started/install) installed
 - AWS Account with approriate permissions
 - [Service Quota](https://us-east-1.console.aws.amazon.com/servicequotas/home/services/chime/quotas) allowance for Phone Numbers
 
-#### Deployment
+### Deployment
 
 ```
 yarn launch
 ```
 
-#### Client
+### Client
 
 To use the included web client SIP phone:
 
@@ -325,10 +325,16 @@ yarn
 yarn run start
 ```
 
-This will start a local server that can be accessed at `http://localhost:3000`. You will need to create an account with Cognito using an email address before signing in. After the Lex Bot has processed the call will be sent to this phone and can be answered to establish two-way communication between the PSTN caller and the SIP agent.
+This will start a local server that can be accessed at `http://localhost:3000`. You will need to create an account with Cognito using an email address before signing in. After the Amazon Lex Bot has processed the call will be sent to this phone and can be answered to establish two-way communication between the PSTN caller and the SIP agent.
 
-#### Cleanup
+### Cleanup
 
 ```
 yarn destroy
 ```
+
+## Notes
+
+This demo is powered by Amazon Lex. Use of Amazon Lex is subject to the AWS Service Terms, including the terms specific to the AWS Machine Learning and Artificial Intelligence Services. Standard Amazon Lex charges apply. For more pricing information, please refer to [Amazon Lex streaming conversation pricing](https://aws.amazon.com/lex/pricing/).
+
+Be sure to cleanup your deployment when finished as charges may apply for the resources deployed, and will continue to be charged if you do not remove them.
