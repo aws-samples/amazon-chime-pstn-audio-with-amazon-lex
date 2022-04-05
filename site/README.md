@@ -1,4 +1,4 @@
-# Amazon Chime Click-To-Call Starter Project Client
+## Amazon Chime SDK With Amazon Lex Bot for Existing Contact Centers SIP Client
 
 ## To Use
 

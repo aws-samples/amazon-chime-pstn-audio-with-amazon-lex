@@ -1,10 +1,14 @@
-## Amazon Chime SDK With Amazon Lex Bot for Existing Contact Centers - Contact Center Intelligence
+## Amazon Chime SDK With Amazon Lex Bot for Existing Contact Centers
 
 ## Overview
 
 ![Overview](images/Lex-CCI.png)
 
-This will demonstrate how you can add an Amazon Lex Bot to an existing Contact Center. In this example, an Amazon Chime Voice Connector will be used to deliver PSTN calls but any carrier can be used in your environment.
+This will demonstrate how you can add an Amazon Lex Bot to an existing contact center. In this example, an Amazon Chime Voice Connector will be used to deliver PSTN calls but any carrier can be used in your environment.
+
+## What It Does
+
+This demo will allow you to see how to add an Amazon Lex Bot to an existing contact center using Amazon Chime Voice Connectors. An Amazon Lex Bot can be used to enhance your contact center with deflection and intelligent routing through self service. In this demo, the information gathered By the Amazon Lex Bot is stored in an Amazon DynamoDB and then queried by the SBC/PBX to determine the next call routing action. Other options are also available if your SBC/PBX is not capable of this type of call routing. This data is also delivered to the Agent so that they are presented with the relevant information the caller gave to the Amazon Lex Bot. The Amazon Lex Bot included in the demo contains two Intents - `Check Balance` and `Transfer Funds`. If the caller chooses the `Check Balance` Intent by speaking one of the Utterances that trigger it, the Amazon Lex Bot will invoke an attached AWS Lambda that generates simuatled information. When completed, the caller will be disconnected. However, if the caller selects `Transfer Funds`, they will be connected to an agent after the Amazon Lex has completed.
 
 ## How It Works
 
@@ -292,10 +296,9 @@ async function dataDipByXCallId(xCallId) {
 
 - Amazon Chime Voice Connector - PSTN Access w/DID
 - Amazon Chime Voice Connector - PSTN Audio
-- AWS Lambda - SIP media application Handler
-- AWS Lambda - Call Query
+- AWS Lambda - SIP media application Handler -[smaHandler.js](resources/smaHandler/smaHandler.js)
+- AWS Lambda - Call Query - [callQuery.js](resources/callQuery/callQuery.js)
 - Amazon API Gateway - Call Query
-- Amazon Cognito UserPool
 - AWS EC2 - Asterisk Server
 - AWS DynamoDB - Call Info Table
 - Amazon Lex Bot - Banker Bot Demo
@@ -325,7 +328,7 @@ yarn
 yarn run start
 ```
 
-This will start a local server that can be accessed at `http://localhost:3000`. You will need to create an account with Cognito using an email address before signing in. After the Amazon Lex Bot has processed the call will be sent to this phone and can be answered to establish two-way communication between the PSTN caller and the SIP agent.
+This will start a local server that can be accessed at `http://localhost:3000`. After the Amazon Lex Bot has processed the call will be sent to this phone and can be answered to establish two-way communication between the PSTN caller and the SIP agent.
 
 ### Cleanup
 

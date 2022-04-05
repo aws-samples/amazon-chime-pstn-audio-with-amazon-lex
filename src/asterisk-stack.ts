@@ -11,6 +11,7 @@ interface AsteriskProps extends NestedStackProps {
 
 export class Asterisk extends NestedStack {
   public readonly pstnVoiceConnectorArn: string;
+  public readonly smaVoiceConnectorArn: string;
   public readonly pstnVoiceConnectorPhone: string;
   public readonly smaVoiceConnectorHostname: string;
   public readonly instanceId: string;
@@ -159,7 +160,7 @@ export class Asterisk extends NestedStack {
       vpc,
       instanceType: ec2.InstanceType.of(
         ec2.InstanceClass.T4G,
-        ec2.InstanceSize.XLARGE,
+        ec2.InstanceSize.MICRO,
       ),
       machineImage: ami,
       init: ec2.CloudFormationInit.fromConfigSets({
@@ -239,6 +240,7 @@ export class Asterisk extends NestedStack {
     });
 
     this.pstnVoiceConnectorArn = `arn:aws:chime:${this.region}:${this.account}:vc/${pstnVoiceConnector.voiceConnectorId}`;
+    this.smaVoiceConnectorArn = `arn:aws:chime:${this.region}:${this.account}:vc/${smaVoiceConnector.voiceConnectorId}`;
     this.pstnVoiceConnectorPhone = phoneNumber.phoneNumber;
     this.smaVoiceConnectorHostname = smaVoiceConnector.voiceConnectorId;
     this.instanceId = ec2Instance.instanceId;

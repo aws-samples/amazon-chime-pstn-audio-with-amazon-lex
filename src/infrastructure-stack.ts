@@ -4,10 +4,7 @@ import {
   LambdaIntegration,
   EndpointType,
   MethodLoggingLevel,
-  // CognitoUserPoolsAuthorizer,
-  // AuthorizationType,
 } from 'aws-cdk-lib/aws-apigateway';
-// import * as cognito from 'aws-cdk-lib/aws-cognito';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
@@ -17,12 +14,12 @@ import { Construct } from 'constructs';
 
 interface InfrastructureProps extends NestedStackProps {
   readonly callerTable: dynamodb.Table;
-  // readonly userPool: cognito.IUserPool;
 }
 
 export class Infrastructure extends NestedStack {
-  public readonly apiUrl: string;
+  public readonly queryAPI: RestApi;
   public readonly asteriskEip: ec2.CfnEIP;
+  public readonly callQueryLambda: NodejsFunction;
 
   constructor(scope: Construct, id: string, props: InfrastructureProps) {
     super(scope, id, props);
@@ -38,7 +35,7 @@ export class Infrastructure extends NestedStack {
       ],
     });
 
-    const callQueryLambda = new NodejsFunction(this, 'callQueryLambda', {
+    this.callQueryLambda = new NodejsFunction(this, 'callQueryLambda', {
       entry: './resources/callQuery/callQuery.js',
       bundling: {
         externalModules: ['aws-sdk'],
@@ -52,7 +49,7 @@ export class Infrastructure extends NestedStack {
       },
     });
 
-    props.callerTable.grantReadWriteData(callQueryLambda);
+    props.callerTable.grantReadWriteData(this.callQueryLambda);
 
     const api = new RestApi(this, 'lexContactCenter', {
       defaultCorsPreflightOptions: {
@@ -75,20 +72,14 @@ export class Infrastructure extends NestedStack {
       },
     });
 
-    // const auth = new CognitoUserPoolsAuthorizer(this, 'auth', {
-    //   cognitoUserPools: [props.userPool],
-    // });
-
     const query = api.root.addResource('query');
 
-    const callQueryIntegration = new LambdaIntegration(callQueryLambda);
+    const callQueryIntegration = new LambdaIntegration(this.callQueryLambda);
 
     query.addMethod('GET', callQueryIntegration, {
-      // authorizer: auth,
-      // authorizationType: AuthorizationType.COGNITO,
       requestParameters: { 'method.request.querystring.xCallId': false },
     });
 
-    this.apiUrl = api.url;
+    this.queryAPI = api;
   }
 }

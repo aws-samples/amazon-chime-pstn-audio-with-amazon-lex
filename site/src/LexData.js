@@ -1,36 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { phoneStore } from 'react-sip-phone';
-import Grid from 'aws-northstar/layouts/Grid';
 import KeyValuePair from 'aws-northstar/components/KeyValuePair';
 import Button from 'aws-northstar/components/Button';
-import styled from 'styled-components';
 import { AmplifyConfig } from './Config';
-// import { API } from 'aws-amplify';
-// import API from '@aws-amplify/api';
 import 'react-sip-phone/dist/index.css';
-// import { API } from 'aws-amplify';
-// import '@aws-amplify/ui-react/styles.css';
-// import Auth from '@aws-amplify/auth';
-import { Amplify, Auth, API } from 'aws-amplify';
+import { Amplify, API } from 'aws-amplify';
 import Container from 'aws-northstar/layouts/Container';
 
-// API.configure(AmplifyConfig);
-// API.configure(AmplifyConfig);
-// Auth.configure(AmplifyConfig);
 Amplify.configure(AmplifyConfig);
 
 const LexData = () => {
     const [currentIncomingCallId, setCurrentIncomingCallId] = useState(null);
     const [sessionStateChanged, setSessionStateChanged] = useState(null);
     const [lexResults, setLexResults] = useState({});
-
-    const StyledContainerDiv = styled.div`
-        padding: 10px;
-    `;
-
-    const StyledRow = styled.div`
-        padding-top: 10px;
-    `;
 
     useEffect(() => {
         const phoneStoreUnsubscribe = phoneStore.subscribe(() => {
@@ -98,31 +80,21 @@ const LexData = () => {
     }
 
     return (
-        <StyledContainerDiv>
-            <Container
-                title="Lex Data"
-                style={{ height: '350px', width: '400px', marginLeft: '-80px', marginTop: '20px' }}
-                actionGroup={
-                    <div>
-                        <Button variant="primary" onClick={() => setLexResults({})}>
-                            Clear
-                        </Button>
-                        <Button variant="primary" onClick={() => dataDipByXCallId(66506309)}>
-                            Query
-                        </Button>
-                    </div>
-                }
-            >
-                {Object.entries(lexResults).map(([key, value]) => {
-                    return (
-                        <StyledRow key={key}>
-                            <KeyValuePair label={key} value={value}></KeyValuePair>
-                            {/* {key} : {value} */}
-                        </StyledRow>
-                    );
-                })}
-            </Container>
-        </StyledContainerDiv>
+        <Container
+            title="Lex Data"
+            style={{ height: '350px', width: '400px', marginLeft: '50px', marginTop: '50px' }}
+            actionGroup={
+                <div>
+                    <Button variant="primary" onClick={() => setLexResults({})}>
+                        Clear
+                    </Button>
+                </div>
+            }
+        >
+            {Object.entries(lexResults).map(([key, value]) => {
+                return <KeyValuePair label={key} value={value}></KeyValuePair>;
+            })}
+        </Container>
     );
 };
 export default LexData;

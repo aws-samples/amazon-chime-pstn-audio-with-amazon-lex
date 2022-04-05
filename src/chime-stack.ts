@@ -15,6 +15,7 @@ interface ChimeProps extends NestedStackProps {
 
 export class Chime extends NestedStack {
   public readonly smaId: string;
+  public readonly smaHandlerLambda: NodejsFunction;
 
   constructor(scope: Construct, id: string, props: ChimeProps) {
     super(scope, id, props);
@@ -38,7 +39,7 @@ export class Chime extends NestedStack {
       ],
     });
 
-    const smaHandlerLambda = new NodejsFunction(this, 'smaHandlerLambda', {
+    this.smaHandlerLambda = new NodejsFunction(this, 'smaHandlerLambda', {
       entry: './resources/smaHandler/smaHandler.js',
       bundling: {
         externalModules: ['aws-sdk'],
@@ -55,11 +56,11 @@ export class Chime extends NestedStack {
       },
     });
 
-    props.callerTable.grantReadWriteData(smaHandlerLambda);
+    props.callerTable.grantReadWriteData(this.smaHandlerLambda);
 
     const sipMediaApp = new chime.ChimeSipMediaApp(this, 'sipMediaApp', {
       region: this.region,
-      endpoint: smaHandlerLambda.functionArn,
+      endpoint: this.smaHandlerLambda.functionArn,
     });
 
     new chime.ChimeSipRule(this, 'sipRule', {
