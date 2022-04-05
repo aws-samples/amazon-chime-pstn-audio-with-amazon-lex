@@ -88,7 +88,7 @@ The SIP media application handler Lambda will be invoked with an event similar t
 
 This invocation is a `NEW_INBOUND_CALL` that contains the same `X-CallId` information that was sent to the Amazon Chime Voice Connector and will be used to store information in an Amazon DynamoDB table. Once the data has been stored, the Lambda will return a `StartBotConversation` action to the SIP media application.
 
-[smaHandler.js](resources/smaHandler/smaHandler.js)
+[smaHandler.js](https://github.com/aws-samples/amazon-chime-pstn-audio-with-amazon-lex/blob/8e28c0a87d5d29aa66a31597b6b4e4b492af92e6/resources/smaHandler/smaHandler.js#L12-L20)
 
 ```javascript
 exports.handler = async (event, context, callback) => {
@@ -215,7 +215,7 @@ When this `ACTION_SUCCESSFUL` is received the Lambda handler will perform the fo
 - Store results in DyanmoDB table
 - Return `hangupAction` to SIP media application
 
-[smaHandler.js](resources/smaHandler/smaHandler.js)
+[smaHandler.js](https://github.com/aws-samples/amazon-chime-pstn-audio-with-amazon-lex/blob/8e28c0a87d5d29aa66a31597b6b4e4b492af92e6/resources/smaHandler/smaHandler.js#L25-L29)
 
 ```javascript
 exports.handler = async (event, context, callback) => {
@@ -245,7 +245,7 @@ The DynamoDB table will now look like this:
 
 The `hangupAction` from the SIP media application returns the call to the Asterisk PBX. In this example, if the `TransferFunds` Intent is used, the call is sent to an Agent using a web client based SIP phone. This client will then query the DynamoDB table for the information captured from the Lex Bot. Your environment may have different devices and configurations. If the `CheckBalance` intent is used, the Asterisk PBX will Hangup the call.
 
-[AsteriskConfiguration](resources/asteriskConfig/extensions.conf)
+[AsteriskConfiguration](https://github.com/aws-samples/amazon-chime-pstn-audio-with-amazon-lex/blob/8e28c0a87d5d29aa66a31597b6b4e4b492af92e6/resources/asteriskConfig/extensions.conf#L17-L19)
 
 #### Call Routing
 
@@ -271,7 +271,7 @@ X-CallId: 66506309
 
 When answered, the client will display the results of the query to the DynamoDB table that contains the information the caller gave to the Amazon Lex Bot.
 
-[LexData.js](site/src/LexData.js)
+[LexData.js](https://github.com/aws-samples/amazon-chime-pstn-audio-with-amazon-lex/blob/8e28c0a87d5d29aa66a31597b6b4e4b492af92e6/site/src/LexData.js#L63-L80)
 
 ```javascript
 async function dataDipByXCallId(xCallId) {
