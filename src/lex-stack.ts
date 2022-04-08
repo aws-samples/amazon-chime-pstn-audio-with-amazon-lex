@@ -131,30 +131,6 @@ export class Lex extends NestedStack {
           ],
           intents: [
             {
-              name: 'Welcome',
-              description: 'Welcome intent',
-              intentClosingSetting: {
-                closingResponse: {
-                  messageGroupsList: [
-                    {
-                      message: {
-                        plainTextMessage: {
-                          value:
-                            "Hi! I'm BB, the Banking Bot. How can I help you today?",
-                        },
-                      },
-                    },
-                  ],
-                },
-              },
-              sampleUtterances: [
-                { utterance: 'Hi' },
-                { utterance: 'Hello' },
-                { utterance: 'I need help' },
-                { utterance: 'Can you help me?' },
-              ],
-            },
-            {
               name: 'CheckBalance',
               description:
                 'Intent to check the balance in the specified account type',
@@ -225,16 +201,53 @@ export class Lex extends NestedStack {
               ],
             },
             {
-              name: 'FollowupCheckBalance',
-              description:
-                'Intent to allow a follow-up balance check request without authentication',
+              name: 'OpenAccount',
+              description: 'Intent to open the specified account type',
+              dialogCodeHook: {
+                enabled: true,
+              },
               sampleUtterances: [
-                { utterance: 'How about my {accountType} account?' },
-                { utterance: 'What about {accountType} ?' },
-                { utterance: 'And in {accountType} ?' },
+                { utterance: 'Open an account' },
+                { utterance: 'Create account' },
+                { utterance: 'Open {accountType} account' },
+                { utterance: 'Create {accountType} account' },
               ],
-              fulfillmentCodeHook: { enabled: true },
-              inputContexts: [{ name: 'contextCheckBalance' }],
+              intentConfirmationSetting: {
+                declinationResponse: {
+                  messageGroupsList: [
+                    {
+                      message: {
+                        plainTextMessage: {
+                          value: 'Lets try that again',
+                        },
+                      },
+                    },
+                  ],
+                  allowInterrupt: true,
+                },
+                promptSpecification: {
+                  maxRetries: 2,
+                  messageGroupsList: [
+                    {
+                      message: {
+                        ssmlMessage: {
+                          value:
+                            '<speak>Is your phone number <say-as interpret-as="telephone">[phoneNumber]</say-as> ?</speak>',
+                        },
+                      },
+                    },
+                  ],
+                  allowInterrupt: true,
+                },
+                isActive: true,
+              },
+              outputContexts: [
+                {
+                  name: 'contextCreateAccount',
+                  timeToLiveInSeconds: 90,
+                  turnsToLive: 5,
+                },
+              ],
               slots: [
                 {
                   name: 'accountType',
@@ -248,7 +261,7 @@ export class Lex extends NestedStack {
                           message: {
                             plainTextMessage: {
                               value:
-                                'For which account would you like your balance?',
+                                'What account type would you like to open?',
                             },
                           },
                         },
@@ -257,8 +270,8 @@ export class Lex extends NestedStack {
                   },
                 },
                 {
-                  name: 'dateOfBirth',
-                  slotTypeName: 'AMAZON.Date',
+                  name: 'firstName',
+                  slotTypeName: 'AMAZON.FirstName',
                   valueElicitationSetting: {
                     slotConstraint: 'Required',
                     promptSpecification: {
@@ -267,8 +280,48 @@ export class Lex extends NestedStack {
                         {
                           message: {
                             plainTextMessage: {
-                              value:
-                                'For verification purposes, what is your date of birth?',
+                              value: 'What is your first name?',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+                {
+                  name: 'lastName',
+                  slotTypeName: 'AMAZON.LastName',
+                  valueElicitationSetting: {
+                    slotConstraint: 'Required',
+                    promptSpecification: {
+                      maxRetries: 2,
+                      messageGroupsList: [
+                        {
+                          message: {
+                            plainTextMessage: {
+                              value: 'What is your last name?',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+                {
+                  name: 'phoneNumber',
+                  slotTypeName: 'AMAZON.PhoneNumber',
+                  valueElicitationSetting: {
+                    slotConstraint: 'Required',
+                    defaultValueSpecification: {
+                      defaultValueList: [{ defaultValue: '[phoneNumber]' }],
+                    },
+                    promptSpecification: {
+                      maxRetries: 2,
+                      messageGroupsList: [
+                        {
+                          message: {
+                            plainTextMessage: {
+                              value: 'What is your phone number?',
                             },
                           },
                         },
@@ -279,7 +332,9 @@ export class Lex extends NestedStack {
               ],
               slotPriorities: [
                 { priority: 1, slotName: 'accountType' },
-                { priority: 2, slotName: 'dateOfBirth' },
+                { priority: 2, slotName: 'firstName' },
+                { priority: 3, slotName: 'lastName' },
+                { priority: 4, slotName: 'phoneNumber' },
               ],
             },
             {
@@ -325,20 +380,6 @@ export class Lex extends NestedStack {
                     },
                   ],
                   maxRetries: 2,
-                },
-              },
-              intentClosingSetting: {
-                closingResponse: {
-                  messageGroupsList: [
-                    {
-                      message: {
-                        plainTextMessage: {
-                          value:
-                            'Let me transfer you to an agent to complete the transfer.',
-                        },
-                      },
-                    },
-                  ],
                 },
               },
               slots: [

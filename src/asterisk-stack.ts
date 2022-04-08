@@ -160,7 +160,7 @@ export class Asterisk extends NestedStack {
       vpc,
       instanceType: ec2.InstanceType.of(
         ec2.InstanceClass.T4G,
-        ec2.InstanceSize.MICRO,
+        ec2.InstanceSize.MEDIUM,
       ),
       machineImage: ami,
       init: ec2.CloudFormationInit.fromConfigSets({
@@ -225,7 +225,7 @@ export class Asterisk extends NestedStack {
         },
       }),
       initOptions: {
-        timeout: Duration.minutes(15),
+        timeout: Duration.minutes(20),
         includeUrl: true,
         includeRole: true,
         printLog: true,

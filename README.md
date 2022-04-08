@@ -8,7 +8,7 @@ This will demonstrate how you can add an Amazon Lex Bot to an existing contact c
 
 ## What It Does
 
-This demo will allow you to see how to add an Amazon Lex Bot to an existing contact center using Amazon Chime Voice Connectors. An Amazon Lex Bot can be used to enhance your contact center with deflection and intelligent routing through self service. In this demo, the information gathered By the Amazon Lex Bot is stored in an Amazon DynamoDB and then queried by the SBC/PBX to determine the next call routing action. Other options are also available if your SBC/PBX is not capable of this type of call routing. This data is also delivered to the Agent so that they are presented with the relevant information the caller gave to the Amazon Lex Bot. The Amazon Lex Bot included in the demo contains two Intents - `Check Balance` and `Transfer Funds`. If the caller chooses the `Check Balance` Intent by speaking one of the Utterances that trigger it, the Amazon Lex Bot will invoke an attached AWS Lambda that generates simuatled information. When completed, the caller will be disconnected. However, if the caller selects `Transfer Funds`, they will be connected to an agent after the Amazon Lex has completed.
+This demo will allow you to see how to add an Amazon Lex Bot to an existing contact center using Amazon Chime Voice Connectors. An Amazon Lex Bot can be used to enhance your contact center with deflection and intelligent routing through self service. In this demo, the information gathered By the Amazon Lex Bot is stored in an Amazon DynamoDB and then queried by the SBC/PBX to determine the next call routing action. Other options are also available if your SBC/PBX is not capable of this type of call routing. This data is also delivered to the Agent so that they are presented with the relevant information the caller gave to the Amazon Lex Bot. The Amazon Lex Bot included in the demo contains three Intents - `Check Balance`, `Transfer Funds`, and `Open Account`. If the caller chooses the `Check Balance` or `Transfer Funds` Intent by speaking one of the Utterances that trigger them, the Amazon Lex Bot will collection information from the caller. When completed, the caller will be disconnected. However, if the caller selects `Open Account`, the Amazon Lex bot will collection information from the caller and then will be connect the caller to an agent.
 
 ## How It Works
 
@@ -26,23 +26,23 @@ You can optionally use the `aws ssm` command to connect to the Asterisk server d
 
 The first portion of this call flow is a call from the PSTN. This call will be answered by an Asterisk PBX. In your environment this could be some combination of an SBC and Contact Center.
 
-```sip
+<pre>
 INVITE sip:+1NPANXXXXXX@54.225.191.168:5060;transport=UDP SIP/2.0
 Via: SIP/2.0/UDP 3.80.16.132:5060;branch=z9hG4bK980f.18c7e855b3ca2c197661a8838c65c32d.0
-From: <sip:+1NPANXXXXXX@10.0.127.102:5060>;tag=4XU48Ua5NDrcr
-To: <sip:+1NPANXXXXXX@54.225.191.168:5060>;transport=UDP
+From: < sip:+1NPANXXXXXX@10.0.127.102:5060 >;tag=4XU48Ua5NDrcr
+To: < sip:+1NPANXXXXXX@54.225.191.168:5060 >;transport=UDP
 X-VoiceConnector-ID: bxhrxku1lu5jcu0roa4ca7
-```
+</pre>
 
 This Asterisk will then route the call to an Amazon Chime Voice Connector via SIP. An extra header has been added that will be used to correlate the call through the different components.
 
-```sip
+<pre>
 INVITE sip:+18005551212@do7wjdbi641ffigpabxkfr.voiceconnector.chime.aws SIP/2.0
 Via: SIP/2.0/UDP 54.225.191.168:5060;rport;branch=z9hG4bKPj3f8527cb-1f02-4721-9c5c-ec38479ed46b
-From: <sip:+1NPANXXXXXX@10.0.0.141>;tag=d489c3f5-bebc-4785-afc9-a12f0ed7cf5a
-To: <sip:+18005551212@grrrp7d8qefmxe2jww7qb8.voiceconnector.chime.aws>
-X-CallId: 66506309
-```
+From: < sip:+1NPANXXXXXX@10.0.0.141 >;tag=d489c3f5-bebc-4785-afc9-a12f0ed7cf5a
+To: < sip:+18005551212@grrrp7d8qefmxe2jww7qb8.voiceconnector.chime.aws >
+<mark>X-CallId: 56983520</mark>
+</pre>
 
 In this example SIP INVITE from the Asterisk to the Amazon Chime Voice Connector, the original-calling-number is passed as the FROM number and a new number is used as the TO number. This number does not need to be a number in your Amazon Chime Phone Inventory. The X-CallId is added as a unique identifier for correlation purposes.
 
@@ -78,7 +78,7 @@ The SIP media application handler Lambda will be invoked with an event similar t
         "Direction": "Inbound",
         "StartTimeInMilliseconds": "1648477951790",
         "SipHeaders": {
-          "X-CallId": "66506309"
+          "X-CallId": "56983520"
         }
       }
     ]
@@ -97,13 +97,15 @@ exports.handler = async (event, context, callback) => {
     case 'NEW_INBOUND_CALL':
       console.log('NEW INBOUND CALL');
       await putInfo(event);
+      startBotConversationAction.Parameters.Configuration.SessionState.SessionAttributes.phoneNumber =
+        event.CallDetails.Participants[0].From;
       actions = [startBotConversationAction];
       break;
 ```
 
 The resulting `startBotConversationAction` sent to the SIP media application will look something like this:
 
-```json
+<pre>
 {
   "SchemaVersion": "1.0",
   "Actions": [
@@ -114,6 +116,9 @@ The resulting `startBotConversationAction` sent to the SIP media application wil
         "LocaleId": "en_US",
         "Configuration": {
           "SessionState": {
+             <mark>"SessionAttributes": {
+               "phoneNumber": "+1NPANXXXXXX"</mark>
+            },            
             "DialogAction": {
               "Type": "ElicitIntent"
             }
@@ -121,7 +126,7 @@ The resulting `startBotConversationAction` sent to the SIP media application wil
           "WelcomeMessages": [
             {
               "ContentType": "PlainText",
-              "Content": "Hi! I'm BB, the Banking Bot. How can I help you today?  You can check your account balances or transfer funds."
+              "Content": "How can I help you today?  You can check your account balances, transfer funds, or open a new account.."
             }
           ]
         }
@@ -129,13 +134,34 @@ The resulting `startBotConversationAction` sent to the SIP media application wil
     }
   ]
 }
+</pre>
+
+This will begin the conversation between the caller on the PSTN and the Amazon Lex Bot. Additionally, it will pass the caller's phone number to the Amazon Lex Bot as a Session Attribute. This will be used later as part of the `Open Account` Intent.
+
+### Amazon Lex Processing
+
+Within the Amazon Lex Bot, one of three Intents can be invoked using different Utterances. To invoke the `Check Balance` Intent, speak one of the sample Utterances:
+
+![Utterances](images/Utterances.png)
+
+Each Intent has different Utterances that will trigger the Intent. The `Check Balance` Intent will invoke an attached Lambda that will generate simuated data and respond to the caller with that data as part of the Fullfillment. Similarly, the `Transfer Funds` Intent will collect information from the caller from several Slots before completing.
+
+![Slots](images/Slots.png)
+
+These Slots can be collected at once with an Utterance like `I'd like to transfer 100 from Checking to Savings` or collected indivually in response to messages from each Slot:
+
+```
+Amazon Lex: Which account would you like to transfer from?
+Caller: Checking
 ```
 
-This will begin the conversation between the caller on the PSTN and the Amazon Lex Bot.
+The `Open Account` Intent uses turn by turn code hooks to validate and confirm the responses from the caller with an AWS Lambda. Additionally, this Intent uses information collected from the Amazon Chime PSTN Audio to automatically populate a Slot. In this example, the `phoneNumber` slot uses the default value of the `[phoneNumber]` Session Attribute that was passed to the Amazon Lex Bot from the Amazon Chime PSTN Audio SIP media application. Once Confirmed and Fullfilled, this information will be returned to the Amazon Chime PSTN Audio handler to be stored and later used.
+
+![Confirmation](images/Confirmation.png)
 
 ### Post Amazon Lex Processing
 
-Once the conversation with the Amazon Lex Bot has completed, it will invoke the SIP media application Lambda with the full results of the Amazon Lex Bot conversation. Below is a trimmed example showing an `ACTION_SUCCESSFUL` invocation after a `StartBotConversation` action.
+Once the conversation with the Amazon Lex Bot has completed, it will invoke the SIP media application Lambda with the full results of the Amazon Lex Bot conversation. Below is a trimmed example showing an `ACTION_SUCCESSFUL` invocation after a `StartBotConversation` action when the `OpenAccount` Intent was used.
 
 ```json
 {
@@ -150,29 +176,37 @@ Once the conversation with the Amazon Lex Bot has completed, it will invoke the 
             "Score": 1
           },
           "Intent": {
-            "Name": "TransferFunds",
+            "Name": "OpenAccount",
             "Slots": {
-              "transferAmount": {
+              "firstName": {
                 "Value": {
-                  "OriginalValue": "one hundred",
-                  "InterpretedValue": "100",
-                  "ResolvedValues": ["100"]
+                  "OriginalValue": "john",
+                  "InterpretedValue": "john",
+                  "ResolvedValues": []
                 },
                 "Values": []
               },
-              "sourceAccountType": {
+              "lastName": {
+                "Value": {
+                  "OriginalValue": "dou",
+                  "InterpretedValue": "dou",
+                  "ResolvedValues": []
+                },
+                "Values": []
+              },
+              "phoneNumber": {
+                "Value": {
+                  "OriginalValue": "eight one five five five five eight two four five",
+                  "InterpretedValue": "8155558245",
+                  "ResolvedValues": ["8155558245"]
+                },
+                "Values": []
+              },
+              "accountType": {
                 "Value": {
                   "OriginalValue": "checking",
                   "InterpretedValue": "Checking",
                   "ResolvedValues": ["Checking"]
-                },
-                "Values": []
-              },
-              "targetAccountType": {
-                "Value": {
-                  "OriginalValue": "savings",
-                  "InterpretedValue": "Savings",
-                  "ResolvedValues": ["Savings"]
                 },
                 "Values": []
               }
@@ -182,7 +216,8 @@ Once the conversation with the Amazon Lex Bot has completed, it will invoke the 
           }
         }
       ]
-    }
+    },
+    "Type": "StartBotConversation"
   },
   "CallDetails": {
     "TransactionId": "23fe0cf1-fc36-4bdc-976d-3520c0a3ac86",
@@ -200,7 +235,7 @@ Once the conversation with the Amazon Lex Bot has completed, it will invoke the 
         "StartTimeInMilliseconds": "1648749429539",
         "Status": "Connected",
         "SipHeaders": {
-          "X-CallId": "66506309"
+          "X-CallId": "56983520"
         }
       }
     ]
@@ -229,9 +264,7 @@ exports.handler = async (event, context, callback) => {
 ```
 
 ```javascript
-if (
-  event.ActionData.IntentResult.SessionState.Intent.Name === 'TransferFunds'
-) {
+if (event.ActionData.IntentResult.SessionState.Intent.Name === 'OpenAccount') {
   callRoute = 'CallAgent';
 } else {
   callRoute = 'Disconnect';
@@ -243,7 +276,7 @@ The DynamoDB table will now look like this:
 
 ### Delivering to Agent
 
-The `hangupAction` from the SIP media application returns the call to the Asterisk PBX. In this example, if the `TransferFunds` Intent is used, the call is sent to an Agent using a web client based SIP phone. This client will then query the DynamoDB table for the information captured from the Lex Bot. Your environment may have different devices and configurations. If the `CheckBalance` intent is used, the Asterisk PBX will Hangup the call.
+The `hangupAction` from the SIP media application returns the call to the Asterisk PBX. In this example, if the `OpenAccount` Intent is used, the call is sent to an Agent using a web client based SIP phone. This client will then query the DynamoDB table for the information captured from the Lex Bot. Your environment may have different devices and configurations. If the `CheckBalance` or `TranferFunds` intent is used, the Asterisk PBX will Hangup the call.
 
 [AsteriskConfiguration](https://github.com/aws-samples/amazon-chime-pstn-audio-with-amazon-lex/blob/8e28c0a87d5d29aa66a31597b6b4e4b492af92e6/resources/asteriskConfig/extensions.conf#L17-L19)
 
@@ -264,7 +297,7 @@ INVITE sip:rm68qs0l@173.25.202.6:50131;transport=ws SIP/2.0
 Via: SIP/2.0/WS 10.0.0.141:8088;rport;branch=z9hG4bKPjb2c966b1-bb9b-4951-982f-cdd820518f71;alias
 From: <sip:+1NPANXXXXXX@ip-10-0-0-141.ec2.internal>;tag=e8a6c3dc-1c02-432c-8dc9-9c335867d4d9
 To: <sip:rm68qs0l@173.25.202.6>
-X-CallId: 66506309
+X-CallId: 56983520
 ```
 
 ![Answered](images/Answered.png)

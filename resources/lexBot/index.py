@@ -1,5 +1,91 @@
 import random
 import decimal
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+
+# --- Helpers that build all of the responses ---
+
+
+def elicit_slot(session_attributes, intent_name, slots, slot_to_elicit, message):
+    return {
+        "messages": [message],
+        "sessionState": {
+            "sessionAttributes": session_attributes,
+            "dialogAction": {"type": "ElicitSlot", "slotToElicit": slot_to_elicit},
+            "intent": {"name": intent_name, "slots": slots},
+        },
+    }
+
+
+def confirm_intent(session_attributes, intent_name, slots, message):
+    return {
+        "messages": [message],
+        "sessionState": {
+            "sessionAttributes": session_attributes,
+            "dialogAction": {"type": "ConfirmIntent"},
+            "intent": {"name": intent_name, "slots": slots},
+        },
+    }
+
+
+def close(session_attributes, intent_name, fulfillment_state, message):
+    response = {
+        "messages": [message],
+        "sessionState": {
+            "dialogAction": {"type": "Close"},
+            "sessionAttributes": session_attributes,
+            "intent": {"name": intent_name, "state": fulfillment_state},
+        },
+    }
+
+    return response
+
+
+def delegate(session_attributes, intent_name, slots):
+    return {
+        "sessionState": {
+            "dialogAction": {"type": "Delegate"},
+            "sessionAttributes": session_attributes,
+            "intent": {"name": intent_name, "slots": slots},
+        }
+    }
+
+
+# --- Helper Functions ---
+
+
+def safe_int(n):
+    """
+    Safely convert n value to int.
+    """
+    if n is not None:
+        return int(n)
+    return n
+
+
+def try_ex(func):
+    """
+    Call passed in function in try block. If KeyError is encountered return None.
+    This function is intended to be used to safely access dictionary.
+    Note that this function would have negative impact on performance.
+    """
+
+    try:
+        return func()
+    except KeyError:
+        return None
+
+
+def interpreted_value(slot):
+    """
+    Retrieves interprated value from slot object
+    """
+    if slot is not None:
+        return slot["value"]["interpretedValue"]
+    return slot
 
 
 def random_num():
@@ -24,28 +110,6 @@ def get_session_attributes(intent_request):
         return sessionState["sessionAttributes"]
 
     return {}
-
-
-def elicit_intent(intent_request, session_attributes, message):
-    return {
-        "sessionState": {"dialogAction": {"type": "ElicitIntent"}, "sessionAttributes": session_attributes},
-        "messages": [message] if message != None else None,
-        "requestAttributes": intent_request["requestAttributes"] if "requestAttributes" in intent_request else None,
-    }
-
-
-def close(intent_request, session_attributes, fulfillment_state, message):
-    intent_request["sessionState"]["intent"]["state"] = fulfillment_state
-    return {
-        "sessionState": {
-            "sessionAttributes": session_attributes,
-            "dialogAction": {"type": "Close"},
-            "intent": intent_request["sessionState"]["intent"],
-        },
-        "messages": [message],
-        "sessionId": intent_request["sessionId"],
-        "requestAttributes": intent_request["requestAttributes"] if "requestAttributes" in intent_request else None,
-    }
 
 
 def CheckBalance(intent_request):
@@ -74,6 +138,57 @@ def FollowupCheckBalance(intent_request):
     return close(intent_request, session_attributes, fulfillment_state, message)
 
 
+def OpenAccount(intent_request):
+    session_attributes = get_session_attributes(intent_request)
+    slots = intent_request["sessionState"]["intent"]["slots"]
+    state = intent_request["sessionState"]["intent"]["state"]
+
+    first_name = slots["firstName"]
+    last_name = slots["lastName"]
+    account_type = slots["accountType"]
+    phone_number = slots["phoneNumber"]
+
+    if intent_request["sessionState"]["intent"]["confirmationState"] == "Denied":
+        print("Confirmation Denied")
+        session_attributes = {}
+        try_ex(lambda: slots.pop("phoneNumber"))
+        return elicit_slot(
+            session_attributes,
+            intent_request["sessionState"]["intent"]["name"],
+            slots,
+            "phoneNumber",
+            {"contentType": "PlainText", "content": "What is your phone number?"},
+        )
+
+    elif intent_request["sessionState"]["intent"]["confirmationState"] == "Confirmed":
+        print("Confirmation Confirmed")
+        account = get_slot(intent_request, "accountType")
+        text = "Thank you. Let me transfer you to an agent to open the " + account + " account."
+        message = {"contentType": "PlainText", "content": text}
+        fulfillment_state = "Fulfilled"
+        return close(session_attributes, "OpenAccount", fulfillment_state, message)
+    else:
+        print("Normal Turn")
+        if first_name and last_name and account_type and phone_number:
+            return confirm_intent(
+                session_attributes,
+                intent_request["sessionState"]["intent"]["name"],
+                slots,
+                {
+                    "contentType": "SSML",
+                    "content": '<speak>Is your phone number <say-as interpret-as="telephone"> '
+                    + interpreted_value(phone_number)
+                    + " </say-as></speak>",
+                },
+            )
+
+        return delegate(
+            session_attributes,
+            intent_request["sessionState"]["intent"]["name"],
+            intent_request["sessionState"]["intent"]["slots"],
+        )
+
+
 def dispatch(intent_request):
     intent_name = intent_request["sessionState"]["intent"]["name"]
     response = None
@@ -82,10 +197,14 @@ def dispatch(intent_request):
         return CheckBalance(intent_request)
     elif intent_name == "FollowupCheckBalance":
         return FollowupCheckBalance(intent_request)
+    elif intent_name == "OpenAccount":
+        return OpenAccount(intent_request)
 
     raise Exception("Intent with name " + intent_name + " not supported")
 
 
 def lambda_handler(event, context):
+    print(event)
     response = dispatch(event)
+    print(response)
     return response

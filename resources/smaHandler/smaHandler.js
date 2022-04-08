@@ -16,6 +16,8 @@ exports.handler = async (event, context, callback) => {
     case 'NEW_INBOUND_CALL':
       console.log('NEW INBOUND CALL');
       await putInfo(event);
+      startBotConversationAction.Parameters.Configuration.SessionState.SessionAttributes.phoneNumber =
+        event.CallDetails.Participants[0].From;
       actions = [startBotConversationAction];
       break;
     case 'RINGING':
@@ -48,7 +50,6 @@ var hangupAction = {
     ParticipantTag: '',
   },
 };
-
 var startBotConversationAction = {
   Type: 'StartBotConversation',
   Parameters: {
@@ -62,6 +63,9 @@ var startBotConversationAction = {
     LocaleId: 'en_US',
     Configuration: {
       SessionState: {
+        SessionAttributes: {
+          phoneNumber: '',
+        },
         DialogAction: {
           Type: 'ElicitIntent',
         },
@@ -70,7 +74,7 @@ var startBotConversationAction = {
         {
           ContentType: 'PlainText',
           Content:
-            "Hi! I'm BB, the Banking Bot. How can I help you today?  You can check your account balances or transfer funds.",
+            'How can I help you today?  You can check your account balances, transfer funds, or open a new account.',
         },
       ],
     },
@@ -104,17 +108,16 @@ async function parseResult(event) {
   const slotsArray = Object.keys(slots);
   let lexResult = {};
   slotsArray.forEach((slotResponse) => {
-    lexResult[slotResponse] = slots[slotResponse].Value.ResolvedValues[0];
+    lexResult[slotResponse] = slots[slotResponse].Value.InterpretedValue;
   });
   var callRoute = '';
   if (
-    event.ActionData.IntentResult.SessionState.Intent.Name === 'TransferFunds'
+    event.ActionData.IntentResult.SessionState.Intent.Name === 'OpenAccount'
   ) {
     callRoute = 'CallAgent';
   } else {
     callRoute = 'Disconnect';
   }
-
   var params = {
     TableName: callInfoTable,
     Key: { CallId: event.CallDetails.Participants[0].SipHeaders['X-CallId'] },
