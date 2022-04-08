@@ -153,6 +153,22 @@ export class Lex extends NestedStack {
                   turnsToLive: 5,
                 },
               ],
+              intentClosingSetting: {
+                closingResponse: {
+                  messageGroupsList: [
+                    {
+                      message: {
+                        plainTextMessage: {
+                          value:
+                            'Thanks for checking your balance.  Have a nice day.',
+                        },
+                      },
+                    },
+                  ],
+                  allowInterrupt: false,
+                },
+                isActive: true,
+              },
               slots: [
                 {
                   name: 'accountType',
@@ -356,6 +372,22 @@ export class Lex extends NestedStack {
                 { utterance: 'Need to make a transfer' },
               ],
               fulfillmentCodeHook: { enabled: false },
+              intentClosingSetting: {
+                closingResponse: {
+                  messageGroupsList: [
+                    {
+                      message: {
+                        plainTextMessage: {
+                          value:
+                            'Thanks for transfering funds.  Have a nice day.',
+                        },
+                      },
+                    },
+                  ],
+                  allowInterrupt: false,
+                },
+                isActive: true,
+              },
               intentConfirmationSetting: {
                 declinationResponse: {
                   messageGroupsList: [
@@ -459,7 +491,7 @@ export class Lex extends NestedStack {
                       message: {
                         plainTextMessage: {
                           value:
-                            "Sorry I am having trouble understanding. Can you describe what you'd like to do in a few words? I can help you find your account balance, transfer funds and make a payment.",
+                            "Sorry I am having trouble understanding. Can you describe what you'd like to do in a few words? I can help you find your account balance, transfer funds and open an account.",
                         },
                       },
                     },

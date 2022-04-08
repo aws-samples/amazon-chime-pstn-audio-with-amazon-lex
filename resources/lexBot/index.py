@@ -122,20 +122,7 @@ def CheckBalance(intent_request):
     text = "Thank you. The balance on your " + account + " account is $" + balance
     message = {"contentType": "PlainText", "content": text}
     fulfillment_state = "Fulfilled"
-    return close(intent_request, session_attributes, fulfillment_state, message)
-
-
-def FollowupCheckBalance(intent_request):
-    session_attributes = get_session_attributes(intent_request)
-    slots = get_slots(intent_request)
-    account = get_slot(intent_request, "accountType")
-    # The account balance in this case is a random number
-    # Here is where you could query a system to get this information
-    balance = str(random_num())
-    text = "Thank you. The balance on your " + account + " account is $" + balance
-    message = {"contentType": "PlainText", "content": text}
-    fulfillment_state = "Fulfilled"
-    return close(intent_request, session_attributes, fulfillment_state, message)
+    return close(session_attributes, "CheckBalance", fulfillment_state, message)
 
 
 def OpenAccount(intent_request):

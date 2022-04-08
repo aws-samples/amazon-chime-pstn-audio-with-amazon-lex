@@ -30,13 +30,8 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-<<<<<<< HEAD
     "aws-cdk": "^2.20.0",
-    "esbuild": "^0.14.30",
-=======
-    "aws-cdk": "^2.19.0",
     "esbuild": "^0.14.34",
->>>>>>> 93f4e6625f4c47c25e28028fc9840206e2db3211
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -51,13 +46,8 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-<<<<<<< HEAD
     "aws-cdk-lib": "^2.20.0",
-    "cdk-amazon-chime-resources": "^0.0.64",
-=======
-    "aws-cdk-lib": "^2.19.0",
     "cdk-amazon-chime-resources": "^0.0.69",
->>>>>>> 93f4e6625f4c47c25e28028fc9840206e2db3211
     "constructs": "^10.0.5"
   },
   "license": "MIT-0",
