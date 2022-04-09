@@ -374,3 +374,19 @@ yarn destroy
 This demo is powered by Amazon Lex. Use of Amazon Lex is subject to the AWS Service Terms, including the terms specific to the AWS Machine Learning and Artificial Intelligence Services. Standard Amazon Lex charges apply. For more pricing information, please refer to [Amazon Lex streaming conversation pricing](https://aws.amazon.com/lex/pricing/).
 
 Be sure to cleanup your deployment when finished as charges may apply for the resources deployed, and will continue to be charged if you do not remove them.
+
+### Alternative Call Flows
+
+The demo will deploy one possible call flow, but many more options are possible. Below are two other options that could be used depending on your infrastructure and configuration.
+
+#### Inbound to SIP media application
+
+![InboundSMA](images/InboundSMAOption.png)
+
+In this example, calls from the PSTN will be sent to the Amazon Chime SDK PSTN Audio first rather than an existing SIP trunk. After the call is processed in the Amazon Lex Bot, the Amazon Chime PSTN Audio will use the [`CallAndBridge`](https://docs.aws.amazon.com/chime-sdk/latest/dg/call-and-bridge.html) action to direct the call an Amazon Chime Voice Connector or PSTN phone number. The media will remain connected to the SIP media application for the duration of the call. This call flow can used if you have no need to keep an existing SIP trunk.
+
+#### Outbound from SIP media application
+
+![OutboundSMA](images/OutboundSMAOption.png)
+
+In this example, calls from the PSTN use an existing SIP trunk, however, after the call is processed in the Amazon Lex Bot, instead of returning a `Hangup` action, a `CallAndBridge` action is returned so the call can be routed to the desired destination. This destination can be a SIP target using Amazon Chime Voice Connector or a PSTN phone number. The media will remain connected to the SIP media application for the duration of the call. This call flow can be used if your telephony infrastructure cannot easily make complex routing decisions based on queried data.
