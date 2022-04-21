@@ -196,9 +196,9 @@ Once the conversation with the Amazon Lex Bot has completed, it will invoke the 
               },
               "phoneNumber": {
                 "Value": {
-                  "OriginalValue": "eight one five five five five eight two four five",
-                  "InterpretedValue": "8155558245",
-                  "ResolvedValues": ["8155558245"]
+                  "OriginalValue": "",
+                  "InterpretedValue": "1NPANXXXXXX",
+                  "ResolvedValues": ["1NPANXXXXXX"]
                 },
                 "Values": []
               },
