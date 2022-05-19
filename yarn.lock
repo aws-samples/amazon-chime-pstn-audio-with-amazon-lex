@@ -1241,7 +1241,7 @@ builtins@^5.0.0:
   dependencies:
     semver "^7.0.0"
 
-cacache@^16.0.0, cacache@^16.0.2:
+cacache@^16.0.0, cacache@^16.1.0:
   version "16.1.0"
   resolved "https://registry.yarnpkg.com/cacache/-/cacache-16.1.0.tgz#87a6bae558a511c9cb2a13768073e240ca76153a"
   integrity sha512-Pk4aQkwCW82A4jGKFvcGkQFqZcMspfP9YWq9Pr87/ldDvlWf718zeI6KWCdKt/jeihu6BytHRUicJPB1K2k8EQ==
@@ -1311,10 +1311,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-amazon-chime-resources@^0.0.104:
-  version "0.0.104"
-  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-0.0.104.tgz#ed00ab482198393c048f143fbb5fdf7c3c40f9f8"
-  integrity sha512-O0DGW0SDrkTlbJkPN1QN5c3pRK7j5PShCQhjKILGT20SqL0UQppa4QmPELeBJIqzaNyrvQ/Ndey7V4+3A0QaqA==
+cdk-amazon-chime-resources@^0.0.105:
+  version "0.0.105"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-0.0.105.tgz#c5a2a4b7626c35db0ca161aeafe8d2092166d646"
+  integrity sha512-9DXIfW6r1nN+5ddo77CMbXVBuvUzftAiGWfoc2OzIzd+lMO7MSML3eHSmvSA+x716lTdTzauLvIqoOJL7CSr5A==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -1475,9 +1475,9 @@ console-control-strings@^1.1.0:
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
 constructs@^10.0.5:
-  version "10.1.10"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.1.10.tgz#8953af15f9fa7d5969606f28d6da667cc77fbd3e"
-  integrity sha512-r6d3QYygh+nveBJK9Iu70XYFVNzUOKIeqQP4uYwyOsQcTlmGydpGdgePPSxmBb80Zv2ZiFoKI87Jt2DmLGoXaA==
+  version "10.1.11"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.1.11.tgz#2e55e100b1dc0723f0ff99cec3025702f3ba0676"
+  integrity sha512-VojJd35T7VY3mq9DExDWKxXdOB2WJZK4YtQlrljwP8pBcH9pAw8RzFf358KN8aRj1Bi5oAY+fOpt3DFsPnrm7w==
 
 conventional-changelog-config-spec@^2.1.0:
   version "2.1.0"
@@ -3573,12 +3573,12 @@ make-error@1.x, make-error@^1.1.1:
   integrity sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==
 
 make-fetch-happen@^10.0.3, make-fetch-happen@^10.0.6:
-  version "10.1.3"
-  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.1.3.tgz#d7ecd4a22563b2c05b74735eda46569da26a46f6"
-  integrity sha512-s/UjmGjUHn9m52cctFhN2ITObbT+axoUhgeir8xGrOlPbKDyJsdhQzb8PGncPQQ28uduHybFJ6Iumy2OZnreXw==
+  version "10.1.4"
+  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.1.4.tgz#b68a64367d2c402f24edc48308ff193d11fc2618"
+  integrity sha512-hU1w68PqfH7FdMgjbiziJoACY0edlbIZ0CyKnpcEruVdCjsUrN+qoenOCIayNqVBK7toSWwbDxvQlrhH0gjRdg==
   dependencies:
     agentkeepalive "^4.2.1"
-    cacache "^16.0.2"
+    cacache "^16.1.0"
     http-cache-semantics "^4.1.0"
     http-proxy-agent "^5.0.0"
     https-proxy-agent "^5.0.0"
@@ -4211,10 +4211,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.56.15:
-  version "0.56.15"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.56.15.tgz#580762dceccd074e295614ed148bfb4e8f2b3508"
-  integrity sha512-96d20Bcoy2kQumts/cZOK1LzIYeH3WmoOk1/LJ+o4syqAZPuZPV3pjUW9NR6YnWDidsnWv/blQw5B1JP3acGtA==
+projen@^0.56.17:
+  version "0.56.17"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.56.17.tgz#f09b0b3ef2c150930fa21473d066d67a611a8e00"
+  integrity sha512-qDcQlbTxzgCtJq0V5BTSzAaMTi00Qw5dk9bjJHEcHQqCM14PUGJMEQR2FzRLD848pg2D3LSdSkRpf/c0Gdr5hg==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
@@ -4829,9 +4829,9 @@ tr46@^2.1.0:
     punycode "^2.1.1"
 
 ts-jest@^27:
-  version "27.1.4"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-27.1.4.tgz#84d42cf0f4e7157a52e7c64b1492c46330943e00"
-  integrity sha512-qjkZlVPWVctAezwsOD1OPzbZ+k7zA5z3oxII4dGdZo5ggX/PL7kvwTM0pXTr10fAtbiVpJaL3bWd502zAhpgSQ==
+  version "27.1.5"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-27.1.5.tgz#0ddf1b163fbaae3d5b7504a1e65c914a95cff297"
+  integrity sha512-Xv6jBQPoBEvBq/5i2TeSG9tt/nqkbpcurrEG1b+2yfBrcJelOZF9Ml6dmyMh7bcW9JyFbRYpR5rxROSlBLTZHA==
   dependencies:
     bs-logger "0.x"
     fast-json-stable-stringify "2.x"
