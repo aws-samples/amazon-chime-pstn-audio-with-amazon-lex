@@ -1,4 +1,4 @@
-import { Duration, NestedStackProps, NestedStack, Stack } from 'aws-cdk-lib';
+import { Duration, Stack } from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
@@ -6,19 +6,19 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as chime from 'cdk-amazon-chime-resources';
 import { Construct } from 'constructs';
 
-interface ChimeProps extends NestedStackProps {
+interface ChimeProps {
   readonly callerTable: dynamodb.Table;
   readonly smaVoiceConnectorHostname: string;
   readonly lexBotId: string;
   readonly lexBotAliasId: string;
 }
 
-export class Chime extends NestedStack {
+export class Chime extends Construct {
   public readonly smaId: string;
   public readonly smaHandlerLambda: NodejsFunction;
 
   constructor(scope: Construct, id: string, props: ChimeProps) {
-    super(scope, id, props);
+    super(scope, id);
 
     const smaHandlerRole = new iam.Role(this, 'smaHandlerRole', {
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
@@ -44,7 +44,7 @@ export class Chime extends NestedStack {
       bundling: {
         externalModules: ['aws-sdk'],
       },
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       role: smaHandlerRole,
       architecture: Architecture.ARM_64,
       timeout: Duration.seconds(60),
@@ -59,7 +59,7 @@ export class Chime extends NestedStack {
     props.callerTable.grantReadWriteData(this.smaHandlerLambda);
 
     const sipMediaApp = new chime.ChimeSipMediaApp(this, 'sipMediaApp', {
-      region: this.region,
+      region: Stack.of(this).region,
       endpoint: this.smaHandlerLambda.functionArn,
     });
 
@@ -69,7 +69,7 @@ export class Chime extends NestedStack {
         props.smaVoiceConnectorHostname + '.voiceconnector.chime.aws',
       targetApplications: [
         {
-          region: this.region,
+          region: Stack.of(this).region,
           priority: 1,
           sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         },

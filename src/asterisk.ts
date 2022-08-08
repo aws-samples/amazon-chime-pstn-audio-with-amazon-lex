@@ -1,4 +1,4 @@
-import { NestedStackProps, NestedStack, Duration } from 'aws-cdk-lib';
+import { NestedStackProps, Stack, Duration } from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as chime from 'cdk-amazon-chime-resources';
@@ -9,7 +9,7 @@ interface AsteriskProps extends NestedStackProps {
   readonly asteriskEip: ec2.CfnEIP;
 }
 
-export class Asterisk extends NestedStack {
+export class Asterisk extends Construct {
   public readonly pstnVoiceConnectorArn: string;
   public readonly smaVoiceConnectorArn: string;
   public readonly pstnVoiceConnectorPhone: string;
@@ -17,7 +17,7 @@ export class Asterisk extends NestedStack {
   public readonly instanceId: string;
 
   constructor(scope: Construct, id: string, props: AsteriskProps) {
-    super(scope, id, props);
+    super(scope, id);
 
     const vpc = new ec2.Vpc(this, 'VPC', {
       natGateways: 0,
@@ -174,7 +174,7 @@ export class Asterisk extends NestedStack {
               SMAVoiceConnector: `${smaVoiceConnector.voiceConnectorId}.voiceconnector.chime.aws`,
               API_URL: props.apiUrl,
               IP: props.asteriskEip.ref,
-              REGION: this.region,
+              REGION: Stack.of(this).region,
             }),
             ec2.InitFile.fromFileInline(
               '/etc/install.sh',
@@ -239,8 +239,12 @@ export class Asterisk extends NestedStack {
       instanceId: ec2Instance.instanceId,
     });
 
-    this.pstnVoiceConnectorArn = `arn:aws:chime:${this.region}:${this.account}:vc/${pstnVoiceConnector.voiceConnectorId}`;
-    this.smaVoiceConnectorArn = `arn:aws:chime:${this.region}:${this.account}:vc/${smaVoiceConnector.voiceConnectorId}`;
+    this.pstnVoiceConnectorArn = `arn:aws:chime:${Stack.of(this).region}:${
+      Stack.of(this).account
+    }:vc/${pstnVoiceConnector.voiceConnectorId}`;
+    this.smaVoiceConnectorArn = `arn:aws:chime:${Stack.of(this).region}:${
+      Stack.of(this).account
+    }:vc/${smaVoiceConnector.voiceConnectorId}`;
     this.pstnVoiceConnectorPhone = phoneNumber.phoneNumber;
     this.smaVoiceConnectorHostname = smaVoiceConnector.voiceConnectorId;
     this.instanceId = ec2Instance.instanceId;

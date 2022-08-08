@@ -1,11 +1,5 @@
 import * as path from 'path';
-import {
-  NestedStackProps,
-  NestedStack,
-  Duration,
-  RemovalPolicy,
-  aws_lex as lex,
-} from 'aws-cdk-lib';
+import { Duration, RemovalPolicy, Stack, aws_lex as lex } from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
@@ -13,16 +7,16 @@ import * as logs from 'aws-cdk-lib/aws-logs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 
-interface LexProps extends NestedStackProps {
+interface LexProps {
   callerTable: dynamodb.Table;
 }
 
-export class Lex extends NestedStack {
+export class Lex extends Construct {
   public readonly lexBotId: string;
   public readonly lexBotAliasId: string;
 
   constructor(scope: Construct, id: string, props: LexProps) {
-    super(scope, id, props);
+    super(scope, id);
 
     const lexCodeHook = new lambda.Function(this, 'lexCodeHook', {
       runtime: lambda.Runtime.PYTHON_3_9,
@@ -565,7 +559,9 @@ export class Lex extends NestedStack {
       sentimentAnalysisSettings: { DetectSentiment: true },
     });
 
-    const lexArn = `arn:aws:lex:${this.region}:${this.account}:bot-alias/${chimeLexBot.attrId}/${chimeLexBotAlias.attrBotAliasId}`;
+    const lexArn = `arn:aws:lex:${Stack.of(this).region}:${
+      Stack.of(this).account
+    }:bot-alias/${chimeLexBot.attrId}/${chimeLexBotAlias.attrBotAliasId}`;
 
     const lexPolicy = {
       Version: '2012-10-17',
@@ -580,10 +576,12 @@ export class Lex extends NestedStack {
           Resource: lexArn,
           Condition: {
             StringEquals: {
-              'AWS:SourceAccount': `${this.account}`,
+              'AWS:SourceAccount': `${Stack.of(this).account}`,
             },
             ArnEquals: {
-              'AWS:SourceArn': `arn:aws:voiceconnector:${this.region}:${this.account}:*`,
+              'AWS:SourceArn': `arn:aws:voiceconnector:${
+                Stack.of(this).region
+              }:${Stack.of(this).account}:*`,
             },
           },
         },
