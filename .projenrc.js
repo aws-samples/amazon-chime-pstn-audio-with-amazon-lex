@@ -1,6 +1,6 @@
 const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkTypeScriptApp({
-  cdkVersion: '2.25.0',
+  cdkVersion: '2.35.0',
   license: 'MIT-0',
   author: 'Court Schuett',
   copyrightOwner: 'Amazon.com, Inc.',
@@ -21,8 +21,8 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   defaultReleaseBranch: 'main',
   name: 'amazon-chime-sdk-pstn-audio-lex-contact-center',
   eslintOptions: { ignorePatterns: ['cognito.ts', 'resources/**'] },
-  devDeps: ['@types/prettier@2.6.0', 'esbuild', 'got@11.8.5'],
-  deps: ['cdk-amazon-chime-resources'],
+  devDeps: ['@types/prettier@2.6.4', 'esbuild', 'got@11.8.5', 'ts-node@10.9.1'],
+  deps: ['cdk-amazon-chime-resources@latest'],
   scripts: {
     launch:
       'yarn && yarn projen && yarn build && yarn cdk bootstrap && yarn cdk deploy -O site/src/cdk-outputs.json',

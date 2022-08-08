@@ -1,0 +1,3839 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+Object {
+  "Outputs": Object {
+    "APIURL": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "InfrastructurelexContactCenter93E20989",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "InfrastructurelexContactCenterDeploymentStageprod655257E5",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "AmazonLexBotAliasID": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "LexchimeLexBotAlias275DAEDB",
+          "BotAliasId",
+        ],
+      },
+    },
+    "AmazonLexBotID": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "LexchimeLexBot2A96F463",
+          "Id",
+        ],
+      },
+    },
+    "InfrastructurelexContactCenterEndpointEB12F7CD": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "InfrastructurelexContactCenter93E20989",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "InfrastructurelexContactCenterDeploymentStageprod655257E5",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "PSTNVoiceConnectorARN": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "arn:aws:chime:",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ":",
+            Object {
+              "Ref": "AWS::AccountId",
+            },
+            ":vc/",
+            Object {
+              "Fn::GetAtt": Array [
+                "AsterisksmaVoiceConnectorvoiceConnectorRequestpstnCustomResource6970C2AE",
+                "voiceConnectorId",
+              ],
+            },
+          ],
+        ],
+      },
+    },
+    "SMAVoiceConnectorARN": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "arn:aws:chime:",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ":",
+            Object {
+              "Ref": "AWS::AccountId",
+            },
+            ":vc/",
+            Object {
+              "Fn::GetAtt": Array [
+                "AsterisksmaVoiceConnectorvoiceConnectorRequestpstnCustomResource6970C2AE",
+                "voiceConnectorId",
+              ],
+            },
+          ],
+        ],
+      },
+    },
+    "callInfoTable": Object {
+      "Value": Object {
+        "Ref": "DatabasecallerTableBB5C7489",
+      },
+    },
+    "callQueryLambda": Object {
+      "Value": Object {
+        "Ref": "InfrastructurecallQueryLambdaF4D2E612",
+      },
+    },
+    "password": Object {
+      "Value": Object {
+        "Ref": "AsteriskInstanceDB134462af1e975f3438d1ed",
+      },
+    },
+    "queryAPI": Object {
+      "Value": Object {
+        "Ref": "InfrastructurelexContactCenter93E20989",
+      },
+    },
+    "sipuri": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "agent@",
+            Object {
+              "Ref": "InfrastructureasteriskEip7E4FCA78",
+            },
+          ],
+        ],
+      },
+    },
+    "smaHandlerLambda": Object {
+      "Value": Object {
+        "Ref": "ChimesmaHandlerLambda51FE45BB",
+      },
+    },
+    "ssmCommand": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "aws ssm start-session --target ",
+            Object {
+              "Ref": "AsteriskInstanceDB134462af1e975f3438d1ed",
+            },
+          ],
+        ],
+      },
+    },
+    "voiceConnectorPhone": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResource9B765602",
+          "phoneNumber",
+        ],
+      },
+    },
+    "websocket": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "ws://",
+            Object {
+              "Ref": "InfrastructureasteriskEip7E4FCA78",
+            },
+            ":8088/ws",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+    "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmarm64gp2C96584B6F00A464EAD1953AFF4B05118Parameter": Object {
+      "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-arm64-gp2",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
+  },
+  "Resources": Object {
+    "AWS679f53fac002430cb0da5b7982bd22872D164C4C": Object {
+      "DependsOn": Array [
+        "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "6dbd112fe448437b3438da4382c72fccbb7d2ee1543db222620d7447fffebc50.zip",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 120,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AsteriskAsteriskSecurityGroup2A659F86": Object {
+      "Properties": Object {
+        "GroupDescription": "Security Group for Asterisk Instance",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "3.80.16.0/23",
+            "Description": "Allow Chime Voice Connector Signaling Access",
+            "FromPort": 5060,
+            "IpProtocol": "udp",
+            "ToPort": 5060,
+          },
+          Object {
+            "CidrIp": "3.80.16.0/23",
+            "Description": "Allow Chime Voice Connector Signaling Access",
+            "FromPort": 5060,
+            "IpProtocol": "tcp",
+            "ToPort": 5061,
+          },
+          Object {
+            "CidrIp": "99.77.253.0/24",
+            "Description": "Allow Chime Voice Connector Signaling Access",
+            "FromPort": 5060,
+            "IpProtocol": "udp",
+            "ToPort": 5060,
+          },
+          Object {
+            "CidrIp": "99.77.253.0/24",
+            "Description": "Allow Chime Voice Connector Signaling Access",
+            "FromPort": 5060,
+            "IpProtocol": "tcp",
+            "ToPort": 5061,
+          },
+          Object {
+            "CidrIp": "99.77.253.0/24",
+            "Description": "Allow Chime Voice Connector Signaling Access",
+            "FromPort": 5000,
+            "IpProtocol": "udp",
+            "ToPort": 65000,
+          },
+          Object {
+            "CidrIp": "3.80.16.0/23",
+            "Description": "Allow Chime Voice Connector Media Access",
+            "FromPort": 5000,
+            "IpProtocol": "udp",
+            "ToPort": 65000,
+          },
+          Object {
+            "CidrIp": "52.55.62.128/25",
+            "Description": "Allow Chime Voice Connector Media Access",
+            "FromPort": 1024,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "52.55.63.0/25",
+            "Description": "Allow Chime Voice Connector Media Access",
+            "FromPort": 1024,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "34.212.95.128/25",
+            "Description": "Allow Chime Voice Connector Media Access",
+            "FromPort": 1024,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "34.223.21.0/25",
+            "Description": "Allow Chime Voice Connector Media Access",
+            "FromPort": 1024,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow Websocket Access",
+            "FromPort": 8088,
+            "IpProtocol": "tcp",
+            "ToPort": 8088,
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "AsteriskVPCFD344048",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "AsteriskEIPAssociation3A327365": Object {
+      "Properties": Object {
+        "EIP": Object {
+          "Ref": "InfrastructureasteriskEip7E4FCA78",
+        },
+        "InstanceId": Object {
+          "Ref": "AsteriskInstanceDB134462af1e975f3438d1ed",
+        },
+      },
+      "Type": "AWS::EC2::EIPAssociation",
+    },
+    "AsteriskInstanceDB134462af1e975f3438d1ed": Object {
+      "CreationPolicy": Object {
+        "ResourceSignal": Object {
+          "Count": 1,
+          "Timeout": "PT20M",
+        },
+      },
+      "DependsOn": Array [
+        "AsteriskasteriskEc2RoleDefaultPolicyD6292042",
+        "AsteriskasteriskEc2Role33F478B3",
+      ],
+      "Metadata": Object {
+        "AWS::CloudFormation::Init": Object {
+          "config": Object {
+            "commands": Object {
+              "000": Object {
+                "command": "chmod +x /etc/config_asterisk.sh",
+              },
+              "001": Object {
+                "command": "/etc/config_asterisk.sh",
+              },
+            },
+            "files": Object {
+              "/etc/asterisk/asterisk.conf": Object {
+                "content": "[options]
+runuser = asterisk
+rungroup = asterisk",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/asterisk/extensions.conf": Object {
+                "content": "; extensions.conf - the Asterisk dial plan
+[general]
+static=yes
+writeprotect=no
+clearglobalvars=no
+
+[handler]
+exten => addheader,1,NoOP(Add \${ARG1} to SIP as X-CallId)
+same => n,Set(PJSIP_HEADER(add,X-CallId)=\${ARG1})
+
+[contact-center]
+exten => _+X.,1,NoOP(Inbound Contact Center)
+same => n,Answer()
+same => n,Wait(1)
+same => n,Set(CallId=\${RAND(10000000,99999999)})
+same => n,Dial(PJSIP/+18005551212@SMAVoiceConnector,,gb(handler^addheader^1(\${CallId})))
+same => n,Set(CALL_ROUTE=\${SHELL(curl --silent API_URLquery?xCallId=\${CallId} | jq -r .CallRoute )})
+same => n,NoOp(\${CALL_ROUTE})
+same => n,GotoIf($[\${CALL_ROUTE} = CallAgent]?callAgent:disconnect)
+same => n(callAgent),NoOp(CallAgent)
+same => n,Dial(PJSIP/agent,,b(handler^addheader^1(\${CallId})))
+same => n,Goto(disconnect)
+same => n(disconnect),NoOp(Disconnect)
+same => n,Hangup()
+
+[from-voiceConnector]
+include => contact-center
+
+",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/asterisk/http.conf": Object {
+                "content": "[general]
+enabled=yes
+bindaddr=0.0.0.0
+bindport=8088
+",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/asterisk/logger.conf": Object {
+                "content": "[general]
+[logfiles]
+console = verbose,notice,warning,error
+messages = notice,warning,error",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/asterisk/modules.conf": Object {
+                "content": "[modules]
+autoload = no
+
+; This is a minimal module load. We are loading only the modules
+; required for the Asterisk features used in the \\"Super Awesome
+; Company\\" configuration.
+
+; Applications
+
+load = app_bridgewait.so
+load = app_dial.so
+load = app_playback.so
+load = app_stack.so
+load = app_verbose.so
+load = app_voicemail.so
+load = app_directory.so
+load = app_confbridge.so
+load = app_queue.so
+load = app_echo.so
+load = app_while.so
+
+; Bridging
+
+load = bridge_builtin_features.so
+load = bridge_builtin_interval_features.so
+load = bridge_holding.so
+load = bridge_native_rtp.so
+load = bridge_simple.so
+load = bridge_softmix.so
+
+; Call Detail Records
+
+load = cdr_custom.so
+
+; Channel Drivers
+
+load = chan_bridge_media.so
+load = chan_pjsip.so
+
+; Codecs
+
+load = codec_gsm.so
+load = codec_resample.so
+load = codec_ulaw.so
+load = codec_g722.so
+
+; Formats
+
+load = format_gsm.so
+load = format_pcm.so
+load = format_wav_gsm.so
+load = format_wav.so
+
+; Functions
+
+load = func_callerid.so
+load = func_cdr.so
+load = func_pjsip_endpoint.so
+load = func_sorcery.so
+load = func_devstate.so
+load = func_strings.so
+load = func_curl.so
+load = func_cut.so
+load = func_rand.so
+load = func_shell.so
+
+; Core/PBX
+
+load = pbx_config.so
+
+; Resources
+
+load = res_http_websocket.so
+load = res_musiconhold.so
+load = res_pjproject.so
+load = res_pjsip_acl.so
+load = res_pjsip_authenticator_digest.so
+load = res_pjsip_caller_id.so
+load = res_pjsip_dialog_info_body_generator.so
+load = res_pjsip_diversion.so
+load = res_pjsip_dtmf_info.so
+load = res_pjsip_endpoint_identifier_anonymous.so
+load = res_pjsip_endpoint_identifier_ip.so
+load = res_pjsip_endpoint_identifier_user.so
+load = res_pjsip_exten_state.so
+load = res_pjsip_header_funcs.so
+load = res_pjsip_logger.so
+load = res_pjsip_messaging.so
+load = res_pjsip_mwi_body_generator.so
+load = res_pjsip_mwi.so
+load = res_pjsip_nat.so
+load = res_pjsip_notify.so
+load = res_pjsip_one_touch_record_info.so
+load = res_pjsip_outbound_authenticator_digest.so
+load = res_pjsip_outbound_publish.so
+load = res_pjsip_outbound_registration.so
+load = res_pjsip_path.so
+load = res_pjsip_pidf_body_generator.so
+load = res_pjsip_pidf_digium_body_supplement.so
+load = res_pjsip_pidf_eyebeam_body_supplement.so
+load = res_pjsip_publish_asterisk.so
+load = res_pjsip_pubsub.so
+load = res_pjsip_refer.so
+load = res_pjsip_registrar.so
+load = res_pjsip_rfc3326.so
+load = res_pjsip_sdp_rtp.so
+load = res_pjsip_send_to_voicemail.so
+load = res_pjsip_session.so
+load = res_pjsip.so
+load = res_pjsip_t38.so
+load = res_pjsip_transport_websocket.so
+load = res_pjsip_xpidf_body_generator.so
+load = res_rtp_asterisk.so
+load = res_sorcery_astdb.so
+load = res_sorcery_config.so
+load = res_sorcery_memory.so
+load = res_sorcery_realtime.so
+load = res_timing_timerfd.so
+load = res_json.so
+load = res_curl.so
+load = res_config_curl.so
+load = res_pjsip_transport_websocket.so
+load = res_http_websocket.so
+load = res_srtp.so
+
+; Do not load res_hep and kin unless you are using HEP monitoring
+; <http://sipcapture.org> in your network.
+
+noload = res_hep.so
+noload = res_hep_pjsip.so
+noload = res_hep_rtcp.so",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/asterisk/pjsip.conf": Object {
+                "content": "[udp]
+type=transport
+protocol=udp
+bind=0.0.0.0
+external_media_address=IP_ADDRESS
+external_signaling_address=IP_ADDRESS
+allow_reload=yes
+
+[ws]
+type=transport
+protocol=ws
+bind=0.0.0.0
+external_media_address=IP_ADDRESS
+external_signaling_address=IP_ADDRESS
+allow_reload=yes
+
+[PSTNVoiceConnector]
+type=endpoint
+context=from-voiceConnector
+transport=udp
+disallow=all
+allow=ulaw
+aors=PSTNVoiceConnector
+direct_media=no
+ice_support=yes
+force_rport=yes
+
+[PSTNVoiceConnector]
+type=identify
+endpoint=PSTNVoiceConnector
+match=PSTN_VOICE_CONNECTOR
+
+[PSTNVoiceConnector]
+type=aor
+contact=sip:PSTN_VOICE_CONNECTOR
+
+[SMAVoiceConnector]
+type=endpoint
+context=from-sma
+transport=udp
+disallow=all
+allow=ulaw
+aors=SMAVoiceConnector
+direct_media=no
+ice_support=yes
+force_rport=yes
+
+[SMAVoiceConnector]
+type=identify
+endpoint=SMAVoiceConnector
+match=SMA_VOICE_CONNECTOR
+
+[SMAVoiceConnector]
+type=aor
+contact=sip:SMA_VOICE_CONNECTOR
+
+[agent]
+type=endpoint
+aors=agent
+auth=agent
+dtls_auto_generate_cert=yes
+webrtc=yes
+context=phone
+disallow=all
+allow=ulaw
+
+[agent]
+type=auth
+auth_type=userpass
+username=agent
+password=INSTANCE_ID
+
+[agent]
+type=aor
+max_contacts=5",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/asterisk/rtp.conf": Object {
+                "content": "[general]
+
+stunaddr=stun.kinesisvideo.us-east-1.amazonaws.com:443",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/config_asterisk.sh": Object {
+                "content": "#!/bin/bash -xe
+IP=$( jq -r '.IP' /etc/config.json )
+PSTN_VOICE_CONNECTOR=$( jq -r '.PSTNVoiceConnector' /etc/config.json )
+SMA_VOICE_CONNECTOR=$( jq -r '.SMAVoiceConnector' /etc/config.json )
+API_URL=$( jq -r '.API_URL' /etc/config.json )
+TOKEN=\`curl -X PUT \\"http://169.254.169.254/latest/api/token\\" -H \\"X-aws-ec2-metadata-token-ttl-seconds: 21600\\"\`
+LOCAL_HOSTNAME=$( curl -H \\"X-aws-ec2-metadata-token: $TOKEN\\" -v http://169.254.169.254/latest/meta-data/public-hostname )
+INSTANCE_ID=$( curl -H \\"X-aws-ec2-metadata-token: $TOKEN\\" -v http://169.254.169.254/latest/meta-data/instance-id )
+
+sed -i \\"s/IP_ADDRESS/$IP/g\\" /etc/asterisk/pjsip.conf
+sed -i \\"s/INSTANCE_ID/$INSTANCE_ID/g\\" /etc/asterisk/pjsip.conf
+sed -i \\"s/PSTN_VOICE_CONNECTOR/$PSTN_VOICE_CONNECTOR/g\\" /etc/asterisk/pjsip.conf
+sed -i \\"s/SMA_VOICE_CONNECTOR/$SMA_VOICE_CONNECTOR/g\\" /etc/asterisk/pjsip.conf
+sed -i \\"s+API_URL+$API_URL+g\\" /etc/asterisk/extensions.conf
+
+groupadd asterisk
+useradd -r -d /var/lib/asterisk -g asterisk asterisk
+usermod -aG audio,dialout asterisk
+chown -R asterisk.asterisk /etc/asterisk
+chown -R asterisk.asterisk /var/{lib,log,spool}/asterisk
+
+systemctl start asterisk
+
+",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+            },
+          },
+          "configSets": Object {
+            "default": Array [
+              "install",
+              "config",
+            ],
+          },
+          "install": Object {
+            "commands": Object {
+              "000": Object {
+                "command": "chmod +x /etc/install.sh",
+              },
+              "001": Object {
+                "command": "cd /tmp",
+              },
+              "002": Object {
+                "command": "/etc/install.sh 2>&1 | tee /var/log/asterisk_install.log",
+              },
+            },
+            "files": Object {
+              "/etc/config.json": Object {
+                "content": Object {
+                  "API_URL": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "https://",
+                        Object {
+                          "Ref": "InfrastructurelexContactCenter93E20989",
+                        },
+                        ".execute-api.",
+                        Object {
+                          "Ref": "AWS::Region",
+                        },
+                        ".",
+                        Object {
+                          "Ref": "AWS::URLSuffix",
+                        },
+                        "/",
+                        Object {
+                          "Ref": "InfrastructurelexContactCenterDeploymentStageprod655257E5",
+                        },
+                        "/",
+                      ],
+                    ],
+                  },
+                  "IP": Object {
+                    "Ref": "InfrastructureasteriskEip7E4FCA78",
+                  },
+                  "PSTNVoiceConnector": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        Object {
+                          "Fn::GetAtt": Array [
+                            "AsteriskpstnVoiceConnectorvoiceConnectorRequestpstnCustomResource05132C84",
+                            "voiceConnectorId",
+                          ],
+                        },
+                        ".voiceconnector.chime.aws",
+                      ],
+                    ],
+                  },
+                  "REGION": Object {
+                    "Ref": "AWS::Region",
+                  },
+                  "SMAVoiceConnector": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        Object {
+                          "Fn::GetAtt": Array [
+                            "AsterisksmaVoiceConnectorvoiceConnectorRequestpstnCustomResource6970C2AE",
+                            "voiceConnectorId",
+                          ],
+                        },
+                        ".voiceconnector.chime.aws",
+                      ],
+                    ],
+                  },
+                },
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/etc/install.sh": Object {
+                "content": "#!/bin/bash -xe
+## Copyright Amazon.com Inc. or its affiliates.
+HOMEDIR=/home/ec2-user
+cd /tmp
+yum -y install make gcc gcc-c++ make subversion libxml2-devel ncurses-devel openssl-devel vim-enhanced man glibc-devel autoconf libnewt kernel-devel kernel-headers linux-headers openssl-devel zlib-devel libsrtp libsrtp-devel uuid libuuid-devel mariadb-server jansson-devel libsqlite3x libsqlite3x-devel epel-release.noarch bash-completion bash-completion-extras unixODBC unixODBC-devel libtool-ltdl libtool-ltdl-devel mysql-connector-odbc mlocate libiodbc sqlite sqlite-devel sql-devel.i686 sqlite-doc.noarch sqlite-tcl.x86_64 patch libedit-devel jq libcurl-devel git
+wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
+tar xvzf asterisk-18-current.tar.gz 
+cd asterisk-18*/
+git clone https://github.com/drivefast/asterisk-res_json.git
+./asterisk-res_json/install.sh
+sed -i '35 i \\\\            res_json \\\\\\\\' addons/Makefile
+sed -i '39 i res_json.so: cJSON.o res_json.o' addons/Makefile
+sed -i '4 i \\\\                LINKER_SYMBOL_PREFIXcJSON_*;' main/asterisk.exports.in
+./configure --libdir=/usr/lib64 --with-jansson-bundled
+make menuselect.makeopts
+menuselect/menuselect \\\\
+        --disable BUILD_NATIVE \\\\
+        --disable chan_sip \\\\
+        --disable chan_skinny \\\\
+        --disable format_mp3 \\\\
+        --enable cdr_csv \\\\
+        --enable res_snmp \\\\
+        --enable res_http_websocket \\\\
+        --enable res_curl \\\\
+        --enable res_config_curl \\\\
+        menuselect.makeopts
+make 
+make install
+make basic-pbx
+touch /etc/redhat-release
+make config
+ldconfig
+
+",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+            },
+          },
+        },
+      },
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "IamInstanceProfile": Object {
+          "Ref": "AsteriskInstanceInstanceProfile6D34C8D3",
+        },
+        "ImageId": Object {
+          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmarm64gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
+        "InstanceType": "t4g.large",
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "AsteriskAsteriskSecurityGroup2A659F86",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet1SubnetDC7F3989",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/Instance",
+          },
+        ],
+        "UserData": Object {
+          "Fn::Base64": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "#!/bin/bash
+# fingerprint: ca26745c0f6ae47d
+(
+  set +e
+  /opt/aws/bin/cfn-init -v --region ",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                " --stack ",
+                Object {
+                  "Ref": "AWS::StackName",
+                },
+                " --resource AsteriskInstanceDB134462af1e975f3438d1ed --url https://cloudformation.",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ".",
+                Object {
+                  "Ref": "AWS::URLSuffix",
+                },
+                " --role ",
+                Object {
+                  "Ref": "AsteriskasteriskEc2Role33F478B3",
+                },
+                " -c default
+  /opt/aws/bin/cfn-signal -e $? --region ",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                " --stack ",
+                Object {
+                  "Ref": "AWS::StackName",
+                },
+                " --resource AsteriskInstanceDB134462af1e975f3438d1ed --url https://cloudformation.",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ".",
+                Object {
+                  "Ref": "AWS::URLSuffix",
+                },
+                " --role ",
+                Object {
+                  "Ref": "AsteriskasteriskEc2Role33F478B3",
+                },
+                "
+  cat /var/log/cfn-init.log >&2
+)",
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::EC2::Instance",
+    },
+    "AsteriskInstanceInstanceProfile6D34C8D3": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "AsteriskasteriskEc2Role33F478B3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "AsteriskVPCAsteriskPublicSubnet1DefaultRoute7A5C457B": Object {
+      "DependsOn": Array [
+        "AsteriskVPCVPCGWC32ED547",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "AsteriskVPCIGWD859AFE2",
+        },
+        "RouteTableId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet1RouteTable6CEBDD13",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "AsteriskVPCAsteriskPublicSubnet1RouteTable6CEBDD13": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/VPC/AsteriskPublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "AsteriskVPCFD344048",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "AsteriskVPCAsteriskPublicSubnet1RouteTableAssociationA0859A80": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet1RouteTable6CEBDD13",
+        },
+        "SubnetId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet1SubnetDC7F3989",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "AsteriskVPCAsteriskPublicSubnet1SubnetDC7F3989": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "AsteriskPublic",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/VPC/AsteriskPublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "AsteriskVPCFD344048",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "AsteriskVPCAsteriskPublicSubnet2DefaultRoute8E9CAB97": Object {
+      "DependsOn": Array [
+        "AsteriskVPCVPCGWC32ED547",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "AsteriskVPCIGWD859AFE2",
+        },
+        "RouteTableId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet2RouteTable0491573C",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "AsteriskVPCAsteriskPublicSubnet2RouteTable0491573C": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/VPC/AsteriskPublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "AsteriskVPCFD344048",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "AsteriskVPCAsteriskPublicSubnet2RouteTableAssociation9EAC0220": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet2RouteTable0491573C",
+        },
+        "SubnetId": Object {
+          "Ref": "AsteriskVPCAsteriskPublicSubnet2Subnet013C0E02",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "AsteriskVPCAsteriskPublicSubnet2Subnet013C0E02": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.1.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "AsteriskPublic",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/VPC/AsteriskPublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "AsteriskVPCFD344048",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "AsteriskVPCFD344048": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/VPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "AsteriskVPCIGWD859AFE2": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/Asterisk/VPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "AsteriskVPCVPCGWC32ED547": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "AsteriskVPCIGWD859AFE2",
+        },
+        "VpcId": Object {
+          "Ref": "AsteriskVPCFD344048",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "AsteriskasteriskEc2Role33F478B3": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "ec2.",
+                      Object {
+                        "Ref": "AWS::URLSuffix",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AsteriskasteriskEc2RoleDefaultPolicyD6292042": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "cloudformation:DescribeStackResource",
+                "cloudformation:SignalResource",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "AWS::StackId",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AsteriskasteriskEc2RoleDefaultPolicyD6292042",
+        "Roles": Array [
+          Object {
+            "Ref": "AsteriskasteriskEc2Role33F478B3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEvent6CFE199E": Object {
+      "DependsOn": Array [
+        "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicy2ABC0644",
+        "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleE060EED2",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e7c95e1a12d903d913ebdd526c735f1ac58b2024882a5562110221fe685ebe85.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/Asterisk/pstnVoiceConnector/voiceConnectorRequest/PSTNResourceProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "PSTNResources1DB9F314",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleE060EED2",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicy2ABC0644": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PSTNResources1DB9F314",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PSTNResources1DB9F314",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicy2ABC0644",
+        "Roles": Array [
+          Object {
+            "Ref": "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleE060EED2",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleE060EED2": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AsteriskpstnVoiceConnectorvoiceConnectorRequestpstnCustomResource05132C84": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AsteriskpstnVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEvent6CFE199E",
+            "Arn",
+          ],
+        },
+        "properties": Object {
+          "encryption": false,
+          "name": "testAsteriskpstnVoiceConnectorB2F09B35",
+          "origination": Array [
+            Object {
+              "host": Object {
+                "Ref": "InfrastructureasteriskEip7E4FCA78",
+              },
+              "port": 5060,
+              "priority": 1,
+              "protocol": "UDP",
+              "weight": 1,
+            },
+          ],
+          "region": Object {
+            "Ref": "AWS::Region",
+          },
+          "termination": Object {
+            "callingRegions": Array [
+              "US",
+            ],
+            "terminationCidrs": Array [
+              Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Ref": "InfrastructureasteriskEip7E4FCA78",
+                    },
+                    "/32",
+                  ],
+                ],
+              },
+            ],
+          },
+        },
+        "resourceType": "VoiceConnector",
+        "uid": "testAsteriskpstnVoiceConnectorB2F09B35",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventB725B2C8": Object {
+      "DependsOn": Array [
+        "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicy5EB7F722",
+        "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleCCE30461",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e7c95e1a12d903d913ebdd526c735f1ac58b2024882a5562110221fe685ebe85.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/Asterisk/smaVoiceConnector/voiceConnectorRequest/PSTNResourceProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "PSTNResources1DB9F314",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleCCE30461",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleCCE30461": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicy5EB7F722": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PSTNResources1DB9F314",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PSTNResources1DB9F314",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicy5EB7F722",
+        "Roles": Array [
+          Object {
+            "Ref": "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventServiceRoleCCE30461",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AsterisksmaVoiceConnectorvoiceConnectorRequestpstnCustomResource6970C2AE": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AsterisksmaVoiceConnectorvoiceConnectorRequestPSTNResourceProviderframeworkonEventB725B2C8",
+            "Arn",
+          ],
+        },
+        "properties": Object {
+          "encryption": false,
+          "name": "testAsterisksmaVoiceConnectorFFAC0C0B",
+          "region": Object {
+            "Ref": "AWS::Region",
+          },
+          "termination": Object {
+            "callingRegions": Array [
+              "US",
+            ],
+            "terminationCidrs": Array [
+              Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Ref": "InfrastructureasteriskEip7E4FCA78",
+                    },
+                    "/32",
+                  ],
+                ],
+              },
+            ],
+          },
+        },
+        "resourceType": "VoiceConnector",
+        "uid": "testAsterisksmaVoiceConnectorFFAC0C0B",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEvent63C4935D": Object {
+      "DependsOn": Array [
+        "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyFE072C2A",
+        "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRole94BBFC78",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e7c95e1a12d903d913ebdd526c735f1ac58b2024882a5562110221fe685ebe85.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/Asterisk/voiceConnectorPhoneNumber/ChimePhoneNumber/PSTNResourceProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "PSTNResources1DB9F314",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRole94BBFC78",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRole94BBFC78": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyFE072C2A": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PSTNResources1DB9F314",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PSTNResources1DB9F314",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyFE072C2A",
+        "Roles": Array [
+          Object {
+            "Ref": "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEventServiceRole94BBFC78",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResource9B765602": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberPSTNResourceProviderframeworkonEvent63C4935D",
+            "Arn",
+          ],
+        },
+        "properties": Object {
+          "phoneCountry": "US",
+          "phoneNumberType": "Local",
+          "phoneProductType": "VoiceConnector",
+          "phoneState": "IL",
+        },
+        "resourceType": "PhoneNumber",
+        "uid": "testAsteriskvoiceConnectorPhoneNumber181D3555",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResourceRole30BED212": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Amazon Chime PSTN Resources",
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "chime:CreateSipRule",
+                    "chime:DeleteSipRule",
+                    "chime:UpdateSipRule",
+                    "chime:GetSipRule",
+                    "chime:CreateSipMediaApplication",
+                    "chime:DeleteSipMediaApplication",
+                    "chime:GetPhoneNumberOrder",
+                    "chime:SearchAvailablePhoneNumbers",
+                    "chime:CreatePhoneNumberOrder",
+                    "chime:DeletePhoneNumber",
+                    "chime:GetPhoneNumber",
+                    "chime:CreateVoiceConnector",
+                    "chime:PutVoiceConnectorStreamingConfiguration",
+                    "chime:PutVoiceConnectorTermination",
+                    "chime:PutVoiceConnectorOrigination",
+                    "chime:ListPhoneNumbers",
+                    "chime:AssociatePhoneNumbersWithVoiceConnector",
+                    "chime:DisassociatePhoneNumbersFromVoiceConnector",
+                    "chime:DeleteVoiceConnector",
+                    "lambda:GetPolicy",
+                    "lambda:AddPermission",
+                    "iam:PutRolePolicy",
+                    "iam:CreateServiceLinkedRole",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+                Object {
+                  "Action": Array [
+                    "ssm:PutParameter",
+                    "ssm:GetParameter",
+                    "ssm:DeleteParameter",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:aws:ssm:",
+                        Object {
+                          "Ref": "AWS::Region",
+                        },
+                        ":",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":parameter/chime/*",
+                      ],
+                    ],
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "chimePolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AsteriskvoiceConnectorPhoneNumberphoneAssociation8DB0F44D": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "AsteriskvoiceConnectorPhoneNumberphoneAssociationCustomResourcePolicyD05A1771",
+      ],
+      "Properties": Object {
+        "Create": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"service\\":\\"Chime\\",\\"action\\":\\"associatePhoneNumbersWithVoiceConnector\\",\\"region\\":\\"us-east-1\\",\\"parameters\\":{\\"E164PhoneNumbers\\":[\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResource9B765602",
+                  "phoneNumber",
+                ],
+              },
+              "\\"],\\"VoiceConnectorId\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AsteriskpstnVoiceConnectorvoiceConnectorRequestpstnCustomResource05132C84",
+                  "voiceConnectorId",
+                ],
+              },
+              "\\",\\"ForceAssociate\\":true},\\"physicalResourceId\\":{\\"id\\":\\"testAsteriskvoiceConnectorPhoneNumberphoneAssociation434A7C48\\"}}",
+            ],
+          ],
+        },
+        "Delete": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"service\\":\\"Chime\\",\\"action\\":\\"disassociatePhoneNumbersFromVoiceConnector\\",\\"region\\":\\"us-east-1\\",\\"parameters\\":{\\"E164PhoneNumbers\\":[\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResource9B765602",
+                  "phoneNumber",
+                ],
+              },
+              "\\"],\\"VoiceConnectorId\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AsteriskpstnVoiceConnectorvoiceConnectorRequestpstnCustomResource05132C84",
+                  "voiceConnectorId",
+                ],
+              },
+              "\\"},\\"physicalResourceId\\":{\\"id\\":\\"testAsteriskvoiceConnectorPhoneNumberphoneAssociation434A7C48\\"}}",
+            ],
+          ],
+        },
+        "InstallLatestAwsSdk": true,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::AWS",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "AsteriskvoiceConnectorPhoneNumberphoneAssociationCustomResourcePolicyD05A1771": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "chime:AssociatePhoneNumbersWithVoiceConnector",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "chime:DisassociatePhoneNumbersFromVoiceConnector",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AsteriskvoiceConnectorPhoneNumberphoneAssociationCustomResourcePolicyD05A1771",
+        "Roles": Array [
+          Object {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventC21782EC": Object {
+      "DependsOn": Array [
+        "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyF2EE5D9F",
+        "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleD4EBDDE9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e7c95e1a12d903d913ebdd526c735f1ac58b2024882a5562110221fe685ebe85.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/Chime/sipMediaApp/sipMediaAppRequest/PSTNResourceProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "PSTNResources1DB9F314",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleD4EBDDE9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleD4EBDDE9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyF2EE5D9F": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PSTNResources1DB9F314",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PSTNResources1DB9F314",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyF2EE5D9F",
+        "Roles": Array [
+          Object {
+            "Ref": "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventServiceRoleD4EBDDE9",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ChimesipMediaAppsipMediaAppRequestpstnCustomResource505FA3C9": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "ChimesipMediaAppsipMediaAppRequestPSTNResourceProviderframeworkonEventC21782EC",
+            "Arn",
+          ],
+        },
+        "properties": Object {
+          "endpoint": Object {
+            "Fn::GetAtt": Array [
+              "ChimesmaHandlerLambda51FE45BB",
+              "Arn",
+            ],
+          },
+          "name": "testChimesipMediaAppEBAB42E6",
+          "region": Object {
+            "Ref": "AWS::Region",
+          },
+        },
+        "resourceType": "SMA",
+        "uid": "testChimesipMediaAppEBAB42E6",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventFA9C5F34": Object {
+      "DependsOn": Array [
+        "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyCAE89E84",
+        "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRole3D85CEF9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e7c95e1a12d903d913ebdd526c735f1ac58b2024882a5562110221fe685ebe85.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/Chime/sipRule/sipRuleRequest/PSTNResourceProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "PSTNResources1DB9F314",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRole3D85CEF9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRole3D85CEF9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyCAE89E84": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PSTNResources1DB9F314",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PSTNResources1DB9F314",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRoleDefaultPolicyCAE89E84",
+        "Roles": Array [
+          Object {
+            "Ref": "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventServiceRole3D85CEF9",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ChimesipRulesipRuleRequestpstnCustomResource7C7C6F28": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "ChimesipRulesipRuleRequestPSTNResourceProviderframeworkonEventFA9C5F34",
+            "Arn",
+          ],
+        },
+        "properties": Object {
+          "name": "testChimesipRuleA371F021",
+          "targetApplications": Array [
+            Object {
+              "priority": 1,
+              "region": Object {
+                "Ref": "AWS::Region",
+              },
+              "sipMediaApplicationId": Object {
+                "Fn::GetAtt": Array [
+                  "ChimesipMediaAppsipMediaAppRequestpstnCustomResource505FA3C9",
+                  "sipMediaAppId",
+                ],
+              },
+            },
+          ],
+          "triggerType": "RequestUriHostname",
+          "triggerValue": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "AsterisksmaVoiceConnectorvoiceConnectorRequestpstnCustomResource6970C2AE",
+                    "voiceConnectorId",
+                  ],
+                },
+                ".voiceconnector.chime.aws",
+              ],
+            ],
+          },
+        },
+        "resourceType": "SMARule",
+        "uid": "testChimesipRuleA371F021",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ChimesmaHandlerLambda51FE45BB": Object {
+      "DependsOn": Array [
+        "ChimesmaHandlerRoleDefaultPolicyDC3EC456",
+        "ChimesmaHandlerRoleAB855B74",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "arm64",
+        ],
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "2af9e3c1d8d2475eabfd6130e5859e485afae9da2da380c9492ebddd3666580b.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "ACCOUNT_ID": Object {
+              "Ref": "AWS::AccountId",
+            },
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "LEX_BOT_ALIAS_ID": Object {
+              "Fn::GetAtt": Array [
+                "LexchimeLexBotAlias275DAEDB",
+                "BotAliasId",
+              ],
+            },
+            "LEX_BOT_ID": Object {
+              "Fn::GetAtt": Array [
+                "LexchimeLexBot2A96F463",
+                "Id",
+              ],
+            },
+            "MEETINGS_TABLE_NAME": Object {
+              "Ref": "DatabasecallerTableBB5C7489",
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ChimesmaHandlerRoleAB855B74",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs16.x",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ChimesmaHandlerRoleAB855B74": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": "chime:*",
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "chimePolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ChimesmaHandlerRoleDefaultPolicyDC3EC456": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "DatabasecallerTableBB5C7489",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ChimesmaHandlerRoleDefaultPolicyDC3EC456",
+        "Roles": Array [
+          Object {
+            "Ref": "ChimesmaHandlerRoleAB855B74",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
+      "DependsOn": Array [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e57c1acaa363d7d2b81736776007a7091bc73dff4aeb8135627c4511a51e7dca.zip",
+        },
+        "Description": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "Lambda function for auto-deleting objects in ",
+              Object {
+                "Ref": "LexlexAudioBucket4C097646",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "__entrypoint__.handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DatabasecallerTableBB5C7489": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "CallId",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "CallId",
+            "KeyType": "HASH",
+          },
+        ],
+        "TableName": "LexContactCenterDatabase98c8c235",
+        "TimeToLiveSpecification": Object {
+          "AttributeName": "TTL",
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "InfrastructureasteriskEip7E4FCA78": Object {
+      "Type": "AWS::EC2::EIP",
+    },
+    "InfrastructurecallQueryLambdaF4D2E612": Object {
+      "DependsOn": Array [
+        "InfrastructureinfrastructureRoleDefaultPolicy0F2BD00C",
+        "InfrastructureinfrastructureRole80511D48",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "arm64",
+        ],
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "72e5b52d32f306b9ec0eb968f5656a3d077ab917d5c421407bd670c39c88afb0.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "CALLER_TABLE_NAME": Object {
+              "Ref": "DatabasecallerTableBB5C7489",
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "InfrastructureinfrastructureRole80511D48",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs16.x",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "InfrastructureinfrastructureRole80511D48": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "InfrastructureinfrastructureRoleDefaultPolicy0F2BD00C": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "DatabasecallerTableBB5C7489",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "InfrastructureinfrastructureRoleDefaultPolicy0F2BD00C",
+        "Roles": Array [
+          Object {
+            "Ref": "InfrastructureinfrastructureRole80511D48",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "InfrastructurelexContactCenter93E20989": Object {
+      "Properties": Object {
+        "EndpointConfiguration": Object {
+          "Types": Array [
+            "REGIONAL",
+          ],
+        },
+        "Name": "lexContactCenter",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "InfrastructurelexContactCenterAccountF84AF02D": Object {
+      "DependsOn": Array [
+        "InfrastructurelexContactCenter93E20989",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "InfrastructurelexContactCenterCloudWatchRole7DFB3036",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "InfrastructurelexContactCenterCloudWatchRole7DFB3036": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "InfrastructurelexContactCenterDeployment6D6E53A81bb601b28dbc008b020d649f18b0346d": Object {
+      "DependsOn": Array [
+        "InfrastructurelexContactCenterOPTIONS237E218E",
+        "InfrastructurelexContactCenterqueryGET5D698978",
+        "InfrastructurelexContactCenterqueryOPTIONS044672A5",
+        "InfrastructurelexContactCenterquery54BDB2F5",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "InfrastructurelexContactCenter93E20989",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "InfrastructurelexContactCenterDeploymentStageprod655257E5": Object {
+      "DependsOn": Array [
+        "InfrastructurelexContactCenterAccountF84AF02D",
+      ],
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "InfrastructurelexContactCenterDeployment6D6E53A81bb601b28dbc008b020d649f18b0346d",
+        },
+        "MethodSettings": Array [
+          Object {
+            "DataTraceEnabled": true,
+            "HttpMethod": "*",
+            "LoggingLevel": "INFO",
+            "ResourcePath": "/*",
+          },
+        ],
+        "RestApiId": Object {
+          "Ref": "InfrastructurelexContactCenter93E20989",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "InfrastructurelexContactCenterOPTIONS237E218E": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Fn::GetAtt": Array [
+            "InfrastructurelexContactCenter93E20989",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": Object {
+          "Ref": "InfrastructurelexContactCenter93E20989",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "InfrastructurelexContactCenterquery54BDB2F5": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "InfrastructurelexContactCenter93E20989",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "query",
+        "RestApiId": Object {
+          "Ref": "InfrastructurelexContactCenter93E20989",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "InfrastructurelexContactCenterqueryGET5D698978": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "InfrastructurecallQueryLambdaF4D2E612",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "RequestParameters": Object {
+          "method.request.querystring.xCallId": false,
+        },
+        "ResourceId": Object {
+          "Ref": "InfrastructurelexContactCenterquery54BDB2F5",
+        },
+        "RestApiId": Object {
+          "Ref": "InfrastructurelexContactCenter93E20989",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "InfrastructurelexContactCenterqueryGETApiPermissionTesttestInfrastructurelexContactCenter0ED522DBGETquery5C3780CB": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "InfrastructurecallQueryLambdaF4D2E612",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "InfrastructurelexContactCenter93E20989",
+              },
+              "/test-invoke-stage/GET/query",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "InfrastructurelexContactCenterqueryGETApiPermissiontestInfrastructurelexContactCenter0ED522DBGETquery5E7DCF9E": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "InfrastructurecallQueryLambdaF4D2E612",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "InfrastructurelexContactCenter93E20989",
+              },
+              "/",
+              Object {
+                "Ref": "InfrastructurelexContactCenterDeploymentStageprod655257E5",
+              },
+              "/GET/query",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "InfrastructurelexContactCenterqueryOPTIONS044672A5": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": Object {
+          "IntegrationResponses": Array [
+            Object {
+              "ResponseParameters": Object {
+                "method.response.header.Access-Control-Allow-Credentials": "'true'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": Object {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": Array [
+          Object {
+            "ResponseParameters": Object {
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": Object {
+          "Ref": "InfrastructurelexContactCenterquery54BDB2F5",
+        },
+        "RestApiId": Object {
+          "Ref": "InfrastructurelexContactCenter93E20989",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "LexLexResourcePolicy80A19810": Object {
+      "Properties": Object {
+        "Policy": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lex:StartConversation",
+              "Condition": Object {
+                "ArnEquals": Object {
+                  "AWS:SourceArn": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:aws:voiceconnector:",
+                        Object {
+                          "Ref": "AWS::Region",
+                        },
+                        ":",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":*",
+                      ],
+                    ],
+                  },
+                },
+                "StringEquals": Object {
+                  "AWS:SourceAccount": Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "voiceconnector.chime.amazonaws.com",
+              },
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:aws:lex:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":bot-alias/",
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "LexchimeLexBot2A96F463",
+                        "Id",
+                      ],
+                    },
+                    "/",
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "LexchimeLexBotAlias275DAEDB",
+                        "BotAliasId",
+                      ],
+                    },
+                  ],
+                ],
+              },
+              "Sid": "AllowChimePstnAudioUseBot",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ResourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:aws:lex:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":bot-alias/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "LexchimeLexBot2A96F463",
+                  "Id",
+                ],
+              },
+              "/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "LexchimeLexBotAlias275DAEDB",
+                  "BotAliasId",
+                ],
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lex::ResourcePolicy",
+    },
+    "LexchimeLexBot2A96F463": Object {
+      "Properties": Object {
+        "AutoBuildBotLocales": true,
+        "BotLocales": Array [
+          Object {
+            "Description": "English_US",
+            "Intents": Array [
+              Object {
+                "Description": "Intent to check the balance in the specified account type",
+                "FulfillmentCodeHook": Object {
+                  "Enabled": true,
+                },
+                "IntentClosingSetting": Object {
+                  "ClosingResponse": Object {
+                    "AllowInterrupt": false,
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "PlainTextMessage": Object {
+                            "Value": "Thanks for checking your balance.  Have a nice day.",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                  "IsActive": true,
+                },
+                "Name": "CheckBalance",
+                "OutputContexts": Array [
+                  Object {
+                    "Name": "contextCheckBalance",
+                    "TimeToLiveInSeconds": 90,
+                    "TurnsToLive": 5,
+                  },
+                ],
+                "SampleUtterances": Array [
+                  Object {
+                    "Utterance": "What’s the balance in my account ?",
+                  },
+                  Object {
+                    "Utterance": "Check my account balance",
+                  },
+                  Object {
+                    "Utterance": "What’s the balance in my {accountType} account ?",
+                  },
+                  Object {
+                    "Utterance": "How much do I have in {accountType} ?",
+                  },
+                  Object {
+                    "Utterance": "I want to check the balance",
+                  },
+                  Object {
+                    "Utterance": "Can you help me with account balance ?",
+                  },
+                  Object {
+                    "Utterance": "Balance in {accountType}",
+                  },
+                ],
+                "SlotPriorities": Array [
+                  Object {
+                    "Priority": 1,
+                    "SlotName": "accountType",
+                  },
+                  Object {
+                    "Priority": 2,
+                    "SlotName": "dateOfBirth",
+                  },
+                ],
+                "Slots": Array [
+                  Object {
+                    "Name": "accountType",
+                    "SlotTypeName": "accountType",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "For which account would you like your balance?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                  Object {
+                    "Name": "dateOfBirth",
+                    "SlotTypeName": "AMAZON.Date",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "For verification purposes, what is your date of birth?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                ],
+              },
+              Object {
+                "Description": "Intent to open the specified account type",
+                "DialogCodeHook": Object {
+                  "Enabled": true,
+                },
+                "IntentConfirmationSetting": Object {
+                  "DeclinationResponse": Object {
+                    "AllowInterrupt": true,
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "PlainTextMessage": Object {
+                            "Value": "Lets try that again",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                  "IsActive": true,
+                  "PromptSpecification": Object {
+                    "AllowInterrupt": true,
+                    "MaxRetries": 2,
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "SSMLMessage": Object {
+                            "Value": "<speak>Is your phone number <say-as interpret-as=\\"telephone\\">[phoneNumber]</say-as> ?</speak>",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+                "Name": "OpenAccount",
+                "OutputContexts": Array [
+                  Object {
+                    "Name": "contextCreateAccount",
+                    "TimeToLiveInSeconds": 90,
+                    "TurnsToLive": 5,
+                  },
+                ],
+                "SampleUtterances": Array [
+                  Object {
+                    "Utterance": "Open an account",
+                  },
+                  Object {
+                    "Utterance": "Create account",
+                  },
+                  Object {
+                    "Utterance": "Open {accountType} account",
+                  },
+                  Object {
+                    "Utterance": "Create {accountType} account",
+                  },
+                ],
+                "SlotPriorities": Array [
+                  Object {
+                    "Priority": 1,
+                    "SlotName": "accountType",
+                  },
+                  Object {
+                    "Priority": 2,
+                    "SlotName": "firstName",
+                  },
+                  Object {
+                    "Priority": 3,
+                    "SlotName": "lastName",
+                  },
+                  Object {
+                    "Priority": 4,
+                    "SlotName": "phoneNumber",
+                  },
+                ],
+                "Slots": Array [
+                  Object {
+                    "Name": "accountType",
+                    "SlotTypeName": "accountType",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "What account type would you like to open?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                  Object {
+                    "Name": "firstName",
+                    "SlotTypeName": "AMAZON.FirstName",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "What is your first name?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                  Object {
+                    "Name": "lastName",
+                    "SlotTypeName": "AMAZON.LastName",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "What is your last name?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                  Object {
+                    "Name": "phoneNumber",
+                    "SlotTypeName": "AMAZON.PhoneNumber",
+                    "ValueElicitationSetting": Object {
+                      "DefaultValueSpecification": Object {
+                        "DefaultValueList": Array [
+                          Object {
+                            "DefaultValue": "[phoneNumber]",
+                          },
+                        ],
+                      },
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "What is your phone number?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                ],
+              },
+              Object {
+                "Description": "Help user transfer funds between bank accounts",
+                "FulfillmentCodeHook": Object {
+                  "Enabled": false,
+                },
+                "IntentClosingSetting": Object {
+                  "ClosingResponse": Object {
+                    "AllowInterrupt": false,
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "PlainTextMessage": Object {
+                            "Value": "Thanks for transfering funds.  Have a nice day.",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                  "IsActive": true,
+                },
+                "IntentConfirmationSetting": Object {
+                  "DeclinationResponse": Object {
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "PlainTextMessage": Object {
+                            "Value": "The transfer has been cancelled",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                  "PromptSpecification": Object {
+                    "MaxRetries": 2,
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "PlainTextMessage": Object {
+                            "Value": "Got it. So we are transferring {transferAmount} from {sourceAccountType} to {targetAccountType}. Can I go ahead with the transfer?",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+                "Name": "TransferFunds",
+                "SampleUtterances": Array [
+                  Object {
+                    "Utterance": "I want to transfer funds",
+                  },
+                  Object {
+                    "Utterance": "Can I make a transfer?",
+                  },
+                  Object {
+                    "Utterance": "I want to make a transfer",
+                  },
+                  Object {
+                    "Utterance": "I'd like to transfer {transferAmount} from {sourceAccountType} to {targetAccountType}",
+                  },
+                  Object {
+                    "Utterance": "Can I transfer {transferAmount} to my {targetAccountType}",
+                  },
+                  Object {
+                    "Utterance": "Would you be able to help me with a transfer?",
+                  },
+                  Object {
+                    "Utterance": "Need to make a transfer",
+                  },
+                ],
+                "SlotPriorities": Array [
+                  Object {
+                    "Priority": 1,
+                    "SlotName": "sourceAccountType",
+                  },
+                  Object {
+                    "Priority": 2,
+                    "SlotName": "targetAccountType",
+                  },
+                  Object {
+                    "Priority": 3,
+                    "SlotName": "transferAmount",
+                  },
+                ],
+                "Slots": Array [
+                  Object {
+                    "Name": "sourceAccountType",
+                    "SlotTypeName": "accountType",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "Which account would you like to transfer from?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                  Object {
+                    "Name": "targetAccountType",
+                    "SlotTypeName": "accountType",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "Which account are you transferring to?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                  Object {
+                    "Name": "transferAmount",
+                    "SlotTypeName": "AMAZON.Number",
+                    "ValueElicitationSetting": Object {
+                      "PromptSpecification": Object {
+                        "MaxRetries": 2,
+                        "MessageGroupsList": Array [
+                          Object {
+                            "Message": Object {
+                              "PlainTextMessage": Object {
+                                "Value": "How much money would you like to transfer?",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                      "SlotConstraint": "Required",
+                    },
+                  },
+                ],
+              },
+              Object {
+                "IntentClosingSetting": Object {
+                  "ClosingResponse": Object {
+                    "MessageGroupsList": Array [
+                      Object {
+                        "Message": Object {
+                          "PlainTextMessage": Object {
+                            "Value": "Sorry I am having trouble understanding. Can you describe what you'd like to do in a few words? I can help you find your account balance, transfer funds and open an account.",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+                "Name": "FallbackIntent",
+                "ParentIntentSignature": "AMAZON.FallbackIntent",
+              },
+            ],
+            "LocaleId": "en_US",
+            "NluConfidenceThreshold": 0.4,
+            "SlotTypes": Array [
+              Object {
+                "Description": "Slot Type description",
+                "Name": "accountType",
+                "SlotTypeValues": Array [
+                  Object {
+                    "SampleValue": Object {
+                      "Value": "Checking",
+                    },
+                  },
+                  Object {
+                    "SampleValue": Object {
+                      "Value": "Savings",
+                    },
+                  },
+                  Object {
+                    "SampleValue": Object {
+                      "Value": "Credit",
+                    },
+                    "Synonyms": Array [
+                      Object {
+                        "Value": "credit card",
+                      },
+                      Object {
+                        "Value": "visa",
+                      },
+                      Object {
+                        "Value": "mastercard",
+                      },
+                      Object {
+                        "Value": "amex",
+                      },
+                      Object {
+                        "Value": "american express",
+                      },
+                    ],
+                  },
+                ],
+                "ValueSelectionSetting": Object {
+                  "ResolutionStrategy": "TOP_RESOLUTION",
+                },
+              },
+            ],
+            "VoiceSettings": Object {
+              "VoiceId": "Kimberly",
+            },
+          },
+        ],
+        "DataPrivacy": Object {
+          "ChildDirected": false,
+        },
+        "IdleSessionTTLInSeconds": 300,
+        "Name": "ChimeDemo",
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "LexlexRoleB28F9876",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lex::Bot",
+    },
+    "LexchimeLexBotAlias275DAEDB": Object {
+      "Properties": Object {
+        "BotAliasLocaleSettings": Array [
+          Object {
+            "BotAliasLocaleSetting": Object {
+              "CodeHookSpecification": Object {
+                "LambdaCodeHook": Object {
+                  "CodeHookInterfaceVersion": "1.0",
+                  "LambdaArn": Object {
+                    "Fn::GetAtt": Array [
+                      "LexlexCodeHookD5AC5A70",
+                      "Arn",
+                    ],
+                  },
+                },
+              },
+              "Enabled": true,
+            },
+            "LocaleId": "en_US",
+          },
+        ],
+        "BotAliasName": "BankerBotDemo",
+        "BotId": Object {
+          "Ref": "LexchimeLexBot2A96F463",
+        },
+        "BotVersion": Object {
+          "Fn::GetAtt": Array [
+            "LexchimeLexBotVersion78FD7F20",
+            "BotVersion",
+          ],
+        },
+        "ConversationLogSettings": Object {
+          "AudioLogSettings": Array [
+            Object {
+              "Destination": Object {
+                "S3Bucket": Object {
+                  "LogPrefix": "chimeLexBot",
+                  "S3BucketArn": Object {
+                    "Fn::GetAtt": Array [
+                      "LexlexAudioBucket4C097646",
+                      "Arn",
+                    ],
+                  },
+                },
+              },
+              "Enabled": true,
+            },
+          ],
+          "TextLogSettings": Array [
+            Object {
+              "Destination": Object {
+                "CloudWatch": Object {
+                  "CloudWatchLogGroupArn": Object {
+                    "Fn::GetAtt": Array [
+                      "LexlexLogGroupDBC25B45",
+                      "Arn",
+                    ],
+                  },
+                  "LogPrefix": "chimeLexBot",
+                },
+              },
+              "Enabled": true,
+            },
+          ],
+        },
+        "SentimentAnalysisSettings": Object {
+          "DetectSentiment": true,
+        },
+      },
+      "Type": "AWS::Lex::BotAlias",
+    },
+    "LexchimeLexBotVersion78FD7F20": Object {
+      "Properties": Object {
+        "BotId": Object {
+          "Ref": "LexchimeLexBot2A96F463",
+        },
+        "BotVersionLocaleSpecification": Array [
+          Object {
+            "BotVersionLocaleDetails": Object {
+              "SourceBotVersion": "DRAFT",
+            },
+            "LocaleId": "en_US",
+          },
+        ],
+      },
+      "Type": "AWS::Lex::BotVersion",
+    },
+    "LexlexAudioBucket4C097646": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "PublicAccessBlockConfiguration": Object {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "LexlexAudioBucketAutoDeleteObjectsCustomResource35D7545E": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "LexlexAudioBucketPolicy275C5409",
+      ],
+      "Properties": Object {
+        "BucketName": Object {
+          "Ref": "LexlexAudioBucket4C097646",
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "LexlexAudioBucketPolicy275C5409": Object {
+      "Properties": Object {
+        "Bucket": Object {
+          "Ref": "LexlexAudioBucket4C097646",
+        },
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::GetAtt": Array [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "LexlexAudioBucket4C097646",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "LexlexAudioBucket4C097646",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "LexlexCodeHookD5AC5A70": Object {
+      "DependsOn": Array [
+        "LexlexCodeHookServiceRoleDefaultPolicyDD03C4E7",
+        "LexlexCodeHookServiceRoleA9E280CA",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "arm64",
+        ],
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "0e364db52cd57c364b1bc3ea5fb441fabdfa65f12e5e2e39ae40412bdc5573ec.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "CALLER_TABLE_NAME": Object {
+              "Ref": "DatabasecallerTableBB5C7489",
+            },
+          },
+        },
+        "Handler": "index.lambda_handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "LexlexCodeHookServiceRoleA9E280CA",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "LexlexCodeHookLexInvocation7060DEFC": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "LexlexCodeHookD5AC5A70",
+            "Arn",
+          ],
+        },
+        "Principal": "lexv2.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:aws:lex:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":bot-alias/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "LexchimeLexBot2A96F463",
+                  "Id",
+                ],
+              },
+              "/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "LexchimeLexBotAlias275DAEDB",
+                  "BotAliasId",
+                ],
+              },
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "LexlexCodeHookServiceRoleA9E280CA": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LexlexCodeHookServiceRoleDefaultPolicyDD03C4E7": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "DatabasecallerTableBB5C7489",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LexlexCodeHookServiceRoleDefaultPolicyDD03C4E7",
+        "Roles": Array [
+          Object {
+            "Ref": "LexlexCodeHookServiceRoleA9E280CA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "LexlexLogGroupDBC25B45": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "RetentionInDays": 7,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "LexlexRoleB28F9876": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lex.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "polly:SynthesizeSpeech",
+                    "comprehend:DetectSentiment",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+                Object {
+                  "Action": Array [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::GetAtt": Array [
+                      "LexlexLogGroupDBC25B45",
+                      "Arn",
+                    ],
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "lexPolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LexlexRoleDefaultPolicy667E533C": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "LexlexAudioBucket4C097646",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "LexlexAudioBucket4C097646",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LexlexRoleDefaultPolicy667E533C",
+        "Roles": Array [
+          Object {
+            "Ref": "LexlexRoleB28F9876",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PSTNResources1DB9F314": Object {
+      "DependsOn": Array [
+        "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResourceRole30BED212",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "arm64",
+        ],
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "1e85bcd7774f4f9e640d34759bef652508e0ebc55cb6d2b6cdb8600fa9ab8e3b.zip",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AsteriskvoiceConnectorPhoneNumberChimePhoneNumberpstnCustomResourceRole30BED212",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

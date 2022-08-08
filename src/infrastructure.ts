@@ -1,4 +1,4 @@
-import { Duration, NestedStackProps, NestedStack } from 'aws-cdk-lib';
+import { Duration } from 'aws-cdk-lib';
 import {
   RestApi,
   LambdaIntegration,
@@ -12,17 +12,17 @@ import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 
-interface InfrastructureProps extends NestedStackProps {
+interface InfrastructureProps {
   readonly callerTable: dynamodb.Table;
 }
 
-export class Infrastructure extends NestedStack {
+export class Infrastructure extends Construct {
   public readonly queryAPI: RestApi;
   public readonly asteriskEip: ec2.CfnEIP;
   public readonly callQueryLambda: NodejsFunction;
 
   constructor(scope: Construct, id: string, props: InfrastructureProps) {
-    super(scope, id, props);
+    super(scope, id);
 
     this.asteriskEip = new ec2.CfnEIP(this, 'asteriskEip');
 
@@ -40,7 +40,7 @@ export class Infrastructure extends NestedStack {
       bundling: {
         externalModules: ['aws-sdk'],
       },
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       architecture: Architecture.ARM_64,
       role: infrastructureRole,
       timeout: Duration.seconds(60),

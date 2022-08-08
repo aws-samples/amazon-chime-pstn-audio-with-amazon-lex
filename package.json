@@ -28,10 +28,10 @@
   "devDependencies": {
     "@types/jest": "^27.5.2",
     "@types/node": "^14",
-    "@types/prettier": "2.6.0",
+    "@types/prettier": "2.6.4",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk": "^2.25.0",
+    "aws-cdk": "^2.35.0",
     "esbuild": "^0.14.49",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
@@ -44,12 +44,12 @@
     "npm-check-updates": "^12",
     "projen": "^0.58.30",
     "ts-jest": "^27",
-    "ts-node": "^9",
+    "ts-node": "10.9.1",
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.25.0",
-    "cdk-amazon-chime-resources": "^0.1.48",
+    "aws-cdk-lib": "^2.35.0",
+    "cdk-amazon-chime-resources": "latest",
     "constructs": "^10.0.5"
   },
   "license": "MIT-0",
