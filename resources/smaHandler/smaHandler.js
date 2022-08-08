@@ -8,6 +8,8 @@ var callInfoTable = process.env['MEETINGS_TABLE_NAME'];
 var lexBotId = process.env['LEX_BOT_ID'];
 var lexBotAliasId = process.env['LEX_BOT_ALIAS_ID'];
 var accountId = process.env['ACCOUNT_ID'];
+var lambdaRegion = process.env['AWS_REGION'];
+
 var documentClient = new AWS.DynamoDB.DocumentClient();
 exports.handler = async (event, context, callback) => {
   console.log('Lambda is invoked with calldetails:' + JSON.stringify(event));
@@ -53,13 +55,7 @@ var hangupAction = {
 var startBotConversationAction = {
   Type: 'StartBotConversation',
   Parameters: {
-    BotAliasArn:
-      'arn:aws:lex:us-east-1:' +
-      accountId +
-      ':bot-alias/' +
-      lexBotId +
-      '/' +
-      lexBotAliasId,
+    BotAliasArn: `arn:aws:lex:${lambdaRegion}:${accountId}:bot-alias/${lexBotId}/${lexBotAliasId}`,
     LocaleId: 'en_US',
     Configuration: {
       SessionState: {
