@@ -2447,6 +2447,7 @@ ldconfig
       "Type": "AWS::ApiGateway::RestApi",
     },
     "InfrastructurelexContactCenterAccountF84AF02D": Object {
+      "DeletionPolicy": "Retain",
       "DependsOn": Array [
         "InfrastructurelexContactCenter93E20989",
       ],
@@ -2459,8 +2460,10 @@ ldconfig
         },
       },
       "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
     },
     "InfrastructurelexContactCenterCloudWatchRole7DFB3036": Object {
+      "DeletionPolicy": "Retain",
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -2490,6 +2493,7 @@ ldconfig
         ],
       },
       "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
     },
     "InfrastructurelexContactCenterDeployment6D6E53A81bb601b28dbc008b020d649f18b0346d": Object {
       "DependsOn": Array [
