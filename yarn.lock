@@ -1458,9 +1458,9 @@ case@1.6.3, case@^1.6.3:
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 cdk-amazon-chime-resources@latest:
-  version "0.1.96"
-  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-0.1.96.tgz#d827b27a1f01a6aac30c6a0c6be697d7c8c7e6ce"
-  integrity sha512-ZuhjmBxXmpgS00Ycn+emgUbxrVbVEPYTkazYYm0zesUq8MZWsWp6Lg2blMYNGGePfjtqBDDlZC6rvdP+csUMOQ==
+  version "0.1.97"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-0.1.97.tgz#23e9d7b15cd4de0676bd954f53e6d0e0738810e2"
+  integrity sha512-HbflGDioEKxrH3wyXMPD9rNVwz22pcsLfPmL4HsiGbsLie00DC4jlg8dO8FopyXogd66X4X7xscUD+OBdTfKEw==
 
 chalk@^2.0.0:
   version "2.4.2"
