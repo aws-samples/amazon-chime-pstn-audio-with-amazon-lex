@@ -35,7 +35,8 @@
   },
   "ignorePatterns": [
     "cognito.ts",
-    "resources/**"
+    "resources/**",
+    "!.projenrc.js"
   ],
   "rules": {
     "indent": [
