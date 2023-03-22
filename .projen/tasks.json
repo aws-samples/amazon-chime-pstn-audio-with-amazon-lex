@@ -78,7 +78,8 @@
       "description": "Deploys your CDK app to the AWS cloud",
       "steps": [
         {
-          "exec": "cdk deploy"
+          "exec": "cdk deploy",
+          "receiveArgs": true
         }
       ]
     },
@@ -87,7 +88,8 @@
       "description": "Destroys your cdk app in the AWS cloud",
       "steps": [
         {
-          "exec": "cdk destroy"
+          "exec": "cdk destroy",
+          "receiveArgs": true
         }
       ]
     },
@@ -118,6 +120,24 @@
       "steps": [
         {
           "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+        }
+      ]
+    },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
         }
       ]
     },
@@ -173,19 +193,11 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --all --updateSnapshot"
+          "exec": "jest --passWithNoTests --updateSnapshot",
+          "receiveArgs": true
         },
         {
           "spawn": "eslint"
-        }
-      ]
-    },
-    "test:update": {
-      "name": "test:update",
-      "description": "Update jest snapshots",
-      "steps": [
-        {
-          "exec": "jest --updateSnapshot"
         }
       ]
     },
@@ -209,19 +221,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@types/prettier,got,cdk-amazon-chime-resources'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='cdk-amazon-chime-resources'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@types/prettier,got,cdk-amazon-chime-resources'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='cdk-amazon-chime-resources'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@types/prettier,got,cdk-amazon-chime-resources'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='cdk-amazon-chime-resources'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@types/prettier,got,cdk-amazon-chime-resources'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='cdk-amazon-chime-resources'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@types/prettier,got,cdk-amazon-chime-resources'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='cdk-amazon-chime-resources'"
         },
         {
           "exec": "yarn install --check-files"

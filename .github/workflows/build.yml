@@ -19,18 +19,22 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
       - name: Install dependencies
         run: yarn install --check-files
       - name: build
         run: npx projen build
-      - id: self_mutation
-        name: Find mutations
+      - name: Find mutations
+        id: self_mutation
         run: |-
           git add .
-          git diff --staged --patch --exit-code > .repo.patch || echo "::set-output name=self_mutation_happened::true"
-      - if: steps.self_mutation.outputs.self_mutation_happened
-        name: Upload patch
-        uses: actions/upload-artifact@v2
+          git diff --staged --patch --exit-code > .repo.patch || echo "self_mutation_happened=true" >> $GITHUB_OUTPUT
+      - name: Upload patch
+        if: steps.self_mutation.outputs.self_mutation_happened
+        uses: actions/upload-artifact@v3
         with:
           name: .repo.patch
           path: .repo.patch
