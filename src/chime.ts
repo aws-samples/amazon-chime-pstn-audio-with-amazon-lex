@@ -1,6 +1,7 @@
 import { Duration, Stack } from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as chime from 'cdk-amazon-chime-resources';
@@ -40,7 +41,7 @@ export class Chime extends Construct {
     });
 
     this.smaHandlerLambda = new NodejsFunction(this, 'smaHandlerLambda', {
-      entry: './resources/smaHandler/smaHandler.js',
+      entry: './src/resources/smaHandler/smaHandler.js',
       bundling: {
         externalModules: ['aws-sdk'],
       },
@@ -55,6 +56,30 @@ export class Chime extends Construct {
         ACCOUNT_ID: Stack.of(this).account,
       },
     });
+
+    const voiceCallAnalyticsLambda = new NodejsFunction(
+      this,
+      'voiceAnalyticsLambda',
+      {
+        entry: './src/resources/voiceAnalytics/index.js',
+        bundling: {
+          externalModules: ['aws-sdk'],
+        },
+        runtime: Runtime.NODEJS_16_X,
+        role: smaHandlerRole,
+        architecture: Architecture.ARM_64,
+        timeout: Duration.seconds(60),
+        environment: {
+          LEX_BOT_ID: props.lexBotId,
+          LEX_BOT_ALIAS_ID: props.lexBotAliasId,
+          ACCOUNT_ID: Stack.of(this).account,
+        },
+      },
+    );
+
+    voiceCallAnalyticsLambda.grantInvoke(
+      new ServicePrincipal('voiceconnector.chime.amazonaws.com'),
+    );
 
     props.callerTable.grantReadWriteData(this.smaHandlerLambda);
 

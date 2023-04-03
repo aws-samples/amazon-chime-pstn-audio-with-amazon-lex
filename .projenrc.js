@@ -1,6 +1,6 @@
 const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkTypeScriptApp({
-  cdkVersion: '2.35.0',
+  cdkVersion: '2.66.0',
   license: 'MIT-0',
   author: 'Court Schuett',
   copyrightOwner: 'Amazon.com, Inc.',
@@ -16,13 +16,12 @@ const project = new awscdk.AwsCdkTypeScriptApp({
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['schuettc'],
   },
+  workflowNodeVersion: '16.x',
   autoApproveUpgrades: true,
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   defaultReleaseBranch: 'main',
   name: 'amazon-chime-sdk-pstn-audio-lex-contact-center',
-  eslintOptions: { ignorePatterns: ['cognito.ts', 'resources/**'] },
-  devDeps: ['@types/prettier@2.6.4', 'esbuild', 'got@11.8.5', 'ts-node@10.9.1'],
-  deps: ['cdk-amazon-chime-resources@latest'],
+  deps: ['cdk-amazon-chime-resources@latest', '@aws-sdk/client-lex-runtime-v2'],
   scripts: {
     launch:
       'yarn && yarn projen && yarn build && yarn cdk bootstrap && yarn cdk deploy -O site/src/cdk-outputs.json',

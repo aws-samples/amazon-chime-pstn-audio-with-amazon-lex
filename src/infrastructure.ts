@@ -36,7 +36,7 @@ export class Infrastructure extends Construct {
     });
 
     this.callQueryLambda = new NodejsFunction(this, 'callQueryLambda', {
-      entry: './resources/callQuery/callQuery.js',
+      entry: './src/resources/callQuery/callQuery.js',
       bundling: {
         externalModules: ['aws-sdk'],
       },
