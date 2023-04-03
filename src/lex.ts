@@ -20,7 +20,7 @@ export class Lex extends Construct {
 
     const lexCodeHook = new lambda.Function(this, 'lexCodeHook', {
       runtime: lambda.Runtime.PYTHON_3_9,
-      code: lambda.Code.fromAsset(path.join(__dirname, '../resources/lexBot')),
+      code: lambda.Code.fromAsset(path.join(__dirname, './resources/lexBot')),
       handler: 'index.lambda_handler',
       architecture: lambda.Architecture.ARM_64,
       timeout: Duration.minutes(1),
@@ -77,7 +77,8 @@ export class Lex extends Construct {
           localeId: 'en_US',
           nluConfidenceThreshold: 0.4,
           voiceSettings: {
-            voiceId: 'Kimberly',
+            voiceId: 'Joanna',
+            engine: 'neural',
           },
           description: 'English_US',
           slotTypes: [
@@ -373,7 +374,7 @@ export class Lex extends Construct {
                       message: {
                         plainTextMessage: {
                           value:
-                            'Thanks for transfering funds.  Have a nice day.',
+                            'Thanks for transferring funds.  Have a nice day.',
                         },
                       },
                     },

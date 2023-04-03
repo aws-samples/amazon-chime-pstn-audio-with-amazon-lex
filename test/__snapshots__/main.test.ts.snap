@@ -131,7 +131,7 @@ Object {
     },
     "password": Object {
       "Value": Object {
-        "Ref": "AsteriskInstanceDB134462af1e975f3438d1ed",
+        "Ref": "AsteriskInstanceDB13446249137793e7bcaee9",
       },
     },
     "queryAPI": Object {
@@ -164,7 +164,7 @@ Object {
           Array [
             "aws ssm start-session --target ",
             Object {
-              "Ref": "AsteriskInstanceDB134462af1e975f3438d1ed",
+              "Ref": "AsteriskInstanceDB13446249137793e7bcaee9",
             },
           ],
         ],
@@ -360,12 +360,12 @@ Object {
           "Ref": "InfrastructureasteriskEip7E4FCA78",
         },
         "InstanceId": Object {
-          "Ref": "AsteriskInstanceDB134462af1e975f3438d1ed",
+          "Ref": "AsteriskInstanceDB13446249137793e7bcaee9",
         },
       },
       "Type": "AWS::EC2::EIPAssociation",
     },
-    "AsteriskInstanceDB134462af1e975f3438d1ed": Object {
+    "AsteriskInstanceDB13446249137793e7bcaee9": Object {
       "CreationPolicy": Object {
         "ResourceSignal": Object {
           "Count": 1,
@@ -384,7 +384,7 @@ Object {
                 "command": "chmod +x /etc/config_asterisk.sh",
               },
               "001": Object {
-                "command": "/etc/config_asterisk.sh",
+                "command": "/etc/config_asterisk.sh 2>&1 | tee /var/log/asterisk_config.log",
               },
             },
             "files": Object {
@@ -802,6 +802,8 @@ systemctl start asterisk
 HOMEDIR=/home/ec2-user
 cd /tmp
 yum -y install make gcc gcc-c++ make subversion libxml2-devel ncurses-devel openssl-devel vim-enhanced man glibc-devel autoconf libnewt kernel-devel kernel-headers linux-headers openssl-devel zlib-devel libsrtp libsrtp-devel uuid libuuid-devel mariadb-server jansson-devel libsqlite3x libsqlite3x-devel epel-release.noarch bash-completion bash-completion-extras unixODBC unixODBC-devel libtool-ltdl libtool-ltdl-devel mysql-connector-odbc mlocate libiodbc sqlite sqlite-devel sql-devel.i686 sqlite-doc.noarch sqlite-tcl.x86_64 patch libedit-devel jq libcurl-devel git
+yum -y install amazon-cloudwatch-agent
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/tmp/amazon-cloudwatch-agent.json
 wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
 tar xvzf asterisk-18-current.tar.gz 
 cd asterisk-18*/
@@ -831,6 +833,43 @@ make config
 ldconfig
 
 ",
+                "encoding": "plain",
+                "group": "root",
+                "mode": "000644",
+                "owner": "root",
+              },
+              "/tmp/amazon-cloudwatch-agent.json": Object {
+                "content": "{
+	\\"agent\\": {
+		\\"run_as_user\\": \\"root\\"
+	},
+	\\"logs\\": {
+		\\"logs_collected\\": {
+			\\"files\\": {
+				\\"collect_list\\": [
+					{
+						\\"file_path\\": \\"/var/log/asterisk_install.log\\",
+						\\"log_group_name\\": \\"/var/log/amazon-chime-sdk-lex/\\",
+						\\"log_stream_name\\": \\"{instance_id}-install\\",
+						\\"retention_in_days\\": 7
+					},
+					{
+						\\"file_path\\": \\"/var/log/asterisk/messages\\",
+						\\"log_group_name\\": \\"/var/log/amazon-chime-sdk-lex/\\",
+						\\"log_stream_name\\": \\"{instance_id}-messages\\",
+						\\"retention_in_days\\": 7
+					},
+					{
+						\\"file_path\\": \\"/var/log/asterisk_config.log\\",
+						\\"log_group_name\\": \\"/var/log/amazon-chime-sdk-lex/\\",
+						\\"log_stream_name\\": \\"{instance_id}-config\\",
+						\\"retention_in_days\\": 7
+					}
+				]
+			}
+		}
+	}
+}",
                 "encoding": "plain",
                 "group": "root",
                 "mode": "000644",
@@ -879,7 +918,7 @@ ldconfig
               "",
               Array [
                 "#!/bin/bash
-# fingerprint: ca26745c0f6ae47d
+# fingerprint: 16f7cea7fa7932a2
 (
   set +e
   /opt/aws/bin/cfn-init -v --region ",
@@ -890,7 +929,7 @@ ldconfig
                 Object {
                   "Ref": "AWS::StackName",
                 },
-                " --resource AsteriskInstanceDB134462af1e975f3438d1ed --url https://cloudformation.",
+                " --resource AsteriskInstanceDB13446249137793e7bcaee9 --url https://cloudformation.",
                 Object {
                   "Ref": "AWS::Region",
                 },
@@ -911,7 +950,7 @@ ldconfig
                 Object {
                   "Ref": "AWS::StackName",
                 },
-                " --resource AsteriskInstanceDB134462af1e975f3438d1ed --url https://cloudformation.",
+                " --resource AsteriskInstanceDB13446249137793e7bcaee9 --url https://cloudformation.",
                 Object {
                   "Ref": "AWS::Region",
                 },
@@ -1150,6 +1189,26 @@ ldconfig
                 ":iam::aws:policy/AmazonSSMManagedInstanceCore",
               ],
             ],
+          },
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "logs:DescribeLogStreams",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "cloudwatchLogs",
           },
         ],
       },
@@ -2809,6 +2868,66 @@ ldconfig
       },
       "Type": "AWS::IAM::Policy",
     },
+    "ChimevoiceAnalyticsLambda8175B47A": Object {
+      "DependsOn": Array [
+        "ChimesmaHandlerRoleDefaultPolicyDC3EC456",
+        "ChimesmaHandlerRoleAB855B74",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "arm64",
+        ],
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "b3e6868fd040f7f773659f122168f22d26bd03cfcd0ec59f88f6a43efdcaf65c.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "ACCOUNT_ID": Object {
+              "Ref": "AWS::AccountId",
+            },
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "LEX_BOT_ALIAS_ID": Object {
+              "Fn::GetAtt": Array [
+                "LexchimeLexBotAlias275DAEDB",
+                "BotAliasId",
+              ],
+            },
+            "LEX_BOT_ID": Object {
+              "Fn::GetAtt": Array [
+                "LexchimeLexBot2A96F463",
+                "Id",
+              ],
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ChimesmaHandlerRoleAB855B74",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs16.x",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ChimevoiceAnalyticsLambdaInvokerJiSJ14cV1VXHLae2GMU0QqGwTcqhvU5g8XtqkZwk1209BCBA": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "ChimevoiceAnalyticsLambda8175B47A",
+            "Arn",
+          ],
+        },
+        "Principal": "voiceconnector.chime.amazonaws.com",
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
     "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
       "DependsOn": Array [
         "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
@@ -2908,7 +3027,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "72e5b52d32f306b9ec0eb968f5656a3d077ab917d5c421407bd670c39c88afb0.zip",
+          "S3Key": "a80c7ec5664f850f8cdbf6c0216bb776eb50bcbc307ba5f1389ace483e672895.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -3705,7 +3824,7 @@ ldconfig
                       Object {
                         "Message": Object {
                           "PlainTextMessage": Object {
-                            "Value": "Thanks for transfering funds.  Have a nice day.",
+                            "Value": "Thanks for transferring funds.  Have a nice day.",
                           },
                         },
                       },
@@ -3900,7 +4019,8 @@ ldconfig
               },
             ],
             "VoiceSettings": Object {
-              "VoiceId": "Kimberly",
+              "Engine": "neural",
+              "VoiceId": "Joanna",
             },
           },
         ],

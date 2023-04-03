@@ -1,9 +1,5 @@
 // resources/smaHandler/smaHandler.js
 var AWS = require('aws-sdk');
-var chime = new AWS.Chime({
-  region: 'us-east-1',
-  endpoint: 'service.chime.aws.amazon.com',
-});
 var callInfoTable = process.env['MEETINGS_TABLE_NAME'];
 var lexBotId = process.env['LEX_BOT_ID'];
 var lexBotAliasId = process.env['LEX_BOT_ALIAS_ID'];

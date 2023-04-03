@@ -26,7 +26,7 @@
     },
     {
       "name": "aws-cdk",
-      "version": "^2.35.0",
+      "version": "^2.66.0",
       "type": "build"
     },
     {
@@ -48,11 +48,6 @@
     {
       "name": "eslint",
       "version": "^8",
-      "type": "build"
-    },
-    {
-      "name": "got",
-      "version": "11.8.5",
       "type": "build"
     },
     {
@@ -86,8 +81,12 @@
       "type": "build"
     },
     {
+      "name": "@aws-sdk/client-lex-runtime-v2",
+      "type": "runtime"
+    },
+    {
       "name": "aws-cdk-lib",
-      "version": "^2.35.0",
+      "version": "^2.66.0",
       "type": "runtime"
     },
     {
