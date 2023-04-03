@@ -129,6 +129,9 @@ Object {
         "Ref": "InfrastructurecallQueryLambdaF4D2E612",
       },
     },
+    "logGroups": Object {
+      "Value": "/var/log/amazon-chime-sdk-lex/",
+    },
     "password": Object {
       "Value": Object {
         "Ref": "AsteriskInstanceDB13446249137793e7bcaee9",
@@ -2741,7 +2744,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "fad56aea0688cd0045515619631eac079817215f7b91cba5a6f244c07cc3d663.zip",
+          "S3Key": "eba76583dd5c1c24b46f6860ebf759dcd9c1c6152f7a1c7945f089869cb2deb9.zip",
         },
         "Environment": Object {
           "Variables": Object {

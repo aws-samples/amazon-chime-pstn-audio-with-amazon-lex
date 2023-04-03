@@ -34,8 +34,11 @@
     }
   },
   "ignorePatterns": [
-    "cognito.ts",
-    "resources/**",
+    "*.js",
+    "*.d.ts",
+    "node_modules/",
+    "*.generated.ts",
+    "coverage",
     "!.projenrc.js"
   ],
   "rules": {
