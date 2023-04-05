@@ -1437,6 +1437,10 @@ ldconfig
               "Statement": Array [
                 Object {
                   "Action": Array [
+                    "chime:*VoiceProfileDomain*",
+                    "kms:CreateGrant",
+                    "kms:DescribeKey",
+                    "chime:*MediaInsightsPipelineConfiguration*",
                     "chime:CreateSipRule",
                     "chime:DeleteSipRule",
                     "chime:UpdateSipRule",
@@ -1517,7 +1521,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "77a512014aac0a5473a1b46da67e1c33d870b7d010eaa19ef6a7c97f6494fed6.zip",
+          "S3Key": "b7f98d78c941ac254a28e874ce2a39af9aa082cf85cb5cb797ea74a851766cf2.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -1720,6 +1724,10 @@ ldconfig
               "Statement": Array [
                 Object {
                   "Action": Array [
+                    "chime:*VoiceProfileDomain*",
+                    "kms:CreateGrant",
+                    "kms:DescribeKey",
+                    "chime:*MediaInsightsPipelineConfiguration*",
                     "chime:CreateSipRule",
                     "chime:DeleteSipRule",
                     "chime:UpdateSipRule",
@@ -1800,7 +1808,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "77a512014aac0a5473a1b46da67e1c33d870b7d010eaa19ef6a7c97f6494fed6.zip",
+          "S3Key": "b7f98d78c941ac254a28e874ce2a39af9aa082cf85cb5cb797ea74a851766cf2.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -1984,6 +1992,10 @@ ldconfig
               "Statement": Array [
                 Object {
                   "Action": Array [
+                    "chime:*VoiceProfileDomain*",
+                    "kms:CreateGrant",
+                    "kms:DescribeKey",
+                    "chime:*MediaInsightsPipelineConfiguration*",
                     "chime:CreateSipRule",
                     "chime:DeleteSipRule",
                     "chime:UpdateSipRule",
@@ -2064,7 +2076,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "77a512014aac0a5473a1b46da67e1c33d870b7d010eaa19ef6a7c97f6494fed6.zip",
+          "S3Key": "b7f98d78c941ac254a28e874ce2a39af9aa082cf85cb5cb797ea74a851766cf2.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -2341,6 +2353,10 @@ ldconfig
               "Statement": Array [
                 Object {
                   "Action": Array [
+                    "chime:*VoiceProfileDomain*",
+                    "kms:CreateGrant",
+                    "kms:DescribeKey",
+                    "chime:*MediaInsightsPipelineConfiguration*",
                     "chime:CreateSipRule",
                     "chime:DeleteSipRule",
                     "chime:UpdateSipRule",
@@ -2421,7 +2437,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "77a512014aac0a5473a1b46da67e1c33d870b7d010eaa19ef6a7c97f6494fed6.zip",
+          "S3Key": "b7f98d78c941ac254a28e874ce2a39af9aa082cf85cb5cb797ea74a851766cf2.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -2631,6 +2647,10 @@ ldconfig
               "Statement": Array [
                 Object {
                   "Action": Array [
+                    "chime:*VoiceProfileDomain*",
+                    "kms:CreateGrant",
+                    "kms:DescribeKey",
+                    "chime:*MediaInsightsPipelineConfiguration*",
                     "chime:CreateSipRule",
                     "chime:DeleteSipRule",
                     "chime:UpdateSipRule",
@@ -2711,7 +2731,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "77a512014aac0a5473a1b46da67e1c33d870b7d010eaa19ef6a7c97f6494fed6.zip",
+          "S3Key": "b7f98d78c941ac254a28e874ce2a39af9aa082cf85cb5cb797ea74a851766cf2.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
