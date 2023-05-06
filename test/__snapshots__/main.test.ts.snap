@@ -1632,7 +1632,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "313bc91bd44dfefa10a80af8e0542da0560116553aafa675395c6b0b43f7ba6c.zip",
+          "S3Key": "9771e237b41e21009807826745b664327a35ca7820f8482807f2ca7ae6501962.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -1919,7 +1919,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "313bc91bd44dfefa10a80af8e0542da0560116553aafa675395c6b0b43f7ba6c.zip",
+          "S3Key": "9771e237b41e21009807826745b664327a35ca7820f8482807f2ca7ae6501962.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -2187,7 +2187,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "313bc91bd44dfefa10a80af8e0542da0560116553aafa675395c6b0b43f7ba6c.zip",
+          "S3Key": "9771e237b41e21009807826745b664327a35ca7820f8482807f2ca7ae6501962.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -2548,7 +2548,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "313bc91bd44dfefa10a80af8e0542da0560116553aafa675395c6b0b43f7ba6c.zip",
+          "S3Key": "9771e237b41e21009807826745b664327a35ca7820f8482807f2ca7ae6501962.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -2842,7 +2842,7 @@ ldconfig
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "313bc91bd44dfefa10a80af8e0542da0560116553aafa675395c6b0b43f7ba6c.zip",
+          "S3Key": "9771e237b41e21009807826745b664327a35ca7820f8482807f2ca7ae6501962.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
