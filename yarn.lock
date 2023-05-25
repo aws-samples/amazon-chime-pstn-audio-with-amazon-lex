@@ -216,7 +216,7 @@
     "@smithy/types" "^1.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-chime@^3.337.0":
+"@aws-sdk/client-chime@^3.338.0":
   version "3.338.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-chime/-/client-chime-3.338.0.tgz#de4071f43b6c0013073fd0577a0d966dd5f562a8"
   integrity sha512-/mPhM6O15ZWBPnnTS0YW+l+fAeqvSL3I8zT9HBxFLmnzwS4n1qS80m+IwH7LkW31O/vdSrw9CJSb6QlUy7oHKg==
@@ -308,7 +308,7 @@
     "@smithy/types" "^1.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-ssm@^3.337.0":
+"@aws-sdk/client-ssm@^3.338.0":
   version "3.338.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-ssm/-/client-ssm-3.338.0.tgz#f1a50e3ebc30e360fa6e509bd7ae583e7b3e3552"
   integrity sha512-U0eCJkZYcq5aha1Z3udhRn2sGAEsg/YcgNgMnIzU6rAvGFPRYp+ICRUwEy9ngYBHWrwKrQF7OKO/OD5QRJ7Urw==
@@ -2484,9 +2484,9 @@ aws-lambda@^1.0.7:
     watchpack "^2.0.0-beta.10"
 
 aws-sdk@^2.814.0:
-  version "2.1383.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1383.0.tgz#ae74e0acddec874b637263ec174841306460d696"
-  integrity sha512-A8sdfcrlGYXqu5x8dpwh1lg9/o354leCx08N/irwH3U4sAwQin0vHsI9DHmaJ0PLNo/TuzeLE3s4dLpI3mWtww==
+  version "2.1384.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1384.0.tgz#b8a642a849af25dbfed42818c162c30ab04dfbac"
+  integrity sha512-5b1ShZ8508yamZKjpRJJlMcztH2EBxnuH8KZObEH4FY/+pHqGIfUtrSVO0IaPNj7RmOnQJ93zCzBc7dhTnEK4A==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2760,15 +2760,15 @@ case@1.6.3, case@^1.6.3:
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 cdk-amazon-chime-resources@latest:
-  version "2.3.40"
-  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.3.40.tgz#8b8e490fa8a69dbd521b6cc4a5da4539ee6394fc"
-  integrity sha512-fCD+NChrq+mhsbt3Nu9bT/eZTxHG2XnolQ53jr9NBLaBkMpr7433e+MjKFGP8MV/QREQR+llr3M+uyMCBxAmdQ==
+  version "2.3.41"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.3.41.tgz#5aff1b0084a83e78c0a93e815136410a5f589d20"
+  integrity sha512-hNRdkVVsIiNPf9L0M0dUyiF90BbkA74AcAhQgcQLiCOhzMI0pr3bh1G+eH6JRcRI5+eBJsg0XEr77ed1waI36w==
   dependencies:
-    "@aws-sdk/client-chime" "^3.337.0"
+    "@aws-sdk/client-chime" "^3.338.0"
     "@aws-sdk/client-chime-sdk-media-pipelines" latest
     "@aws-sdk/client-chime-sdk-messaging" latest
     "@aws-sdk/client-chime-sdk-voice" latest
-    "@aws-sdk/client-ssm" "^3.337.0"
+    "@aws-sdk/client-ssm" "^3.338.0"
     "@types/aws-lambda" "^8.10.115"
     aws-lambda "^1.0.7"
 
@@ -2948,9 +2948,9 @@ console-control-strings@^1.1.0:
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
 constructs@^10.0.5:
-  version "10.2.31"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.2.31.tgz#e04dac2fb6a6b960153c09f5ef50c7eaa2bf4d05"
-  integrity sha512-r49ORPNWmPXAVWADpqKjhL+Pa9m9AgaSrUfI4U7w7whhY4Eg2+2E4TSAdssam05WCFl59HiTd2aW5DikrNyycA==
+  version "10.2.32"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.2.32.tgz#395ae9af2ac110052b84209664ff11e7a8eb53d1"
+  integrity sha512-84MhMvsroG3gu2zf43N3SUDlMKEGbauXK5z1qG/hA4X1kGZCzPbU3DslQJtLsHVctY7aYHIGU1axInDu9DvttA==
 
 conventional-changelog-config-spec@^2.1.0:
   version "2.1.0"
@@ -3144,9 +3144,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.4.284:
-  version "1.4.405"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.405.tgz#487bdba2d82a59b092d6b6e4602bf733cec6a7ef"
-  integrity sha512-JdDgnwU69FMZURoesf9gNOej2Cms1XJFfLk24y1IBtnAdhTcJY/mXnokmpmxHN59PcykBP4bgUU98vLY44Lhuw==
+  version "1.4.406"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.406.tgz#6388f92a0443d0f0ffcda890489edbe2012488f2"
+  integrity sha512-NXlDDH8Z4tK5ZX7w9dW/lRUsZ0TwL1rg3Sw1e5HKbk3+LCAh3SyUjYyGoxOf9xNxyg+DtaofkFpHS4T5Z2Q26w==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -5352,9 +5352,9 @@ node-int64@^0.4.0:
   integrity sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==
 
 node-releases@^2.0.8:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.11.tgz#59d7cef999d13f908e43b5a70001cf3129542f0f"
-  integrity sha512-+M0PwXeU80kRohZ3aT4J/OnR+l9/KD2nVLNNoRgFtnf+umQVFdGBAO2N8+nCnEi0xlh/Wk3zOGC+vNNx+uM79Q==
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.12.tgz#35627cc224a23bfb06fb3380f2b3afaaa7eb1039"
+  integrity sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==
 
 nopt@^6.0.0:
   version "6.0.0"
