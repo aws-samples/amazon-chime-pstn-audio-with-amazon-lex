@@ -259,7 +259,7 @@
     "@smithy/types" "^1.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-chime@^3.344.0":
+"@aws-sdk/client-chime@^3.345.0":
   version "3.345.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-chime/-/client-chime-3.345.0.tgz#336e2c41fa34623fdfdd4edac632854d413e4d74"
   integrity sha512-2UlGINaPzi8hpjVtUiki7Si3jx5LL9yb7bYZTJgFBGhML63LaJOedJcifjNyw0kIMXlLdp+OPW6rTA1kmubE6w==
@@ -351,7 +351,7 @@
     "@smithy/types" "^1.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-ssm@^3.344.0":
+"@aws-sdk/client-ssm@^3.345.0":
   version "3.345.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-ssm/-/client-ssm-3.345.0.tgz#b054cc0cfe5ef09e3a2b032146dbf6178af34551"
   integrity sha512-4uvi93brq+8GmLYzHNgDag4AuqgxprtQUgVs8Qh4gwusp/kSlcW96MbJUnthvYFUzfnyvJd1JmgZs3M+ypYKmg==
@@ -2794,9 +2794,9 @@ camelcase@^7.0.1:
   integrity sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==
 
 caniuse-lite@^1.0.30001489:
-  version "1.0.30001492"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001492.tgz#4a06861788a52b4c81fd3344573b68cc87fe062b"
-  integrity sha512-2efF8SAZwgAX1FJr87KWhvuJxnGJKOnctQa8xLOskAXNXq8oiuqgl6u1kk3fFpsp3GgvzlRjiK1sl63hNtFADw==
+  version "1.0.30001494"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001494.tgz#3e56e04a48da7a79eae994559eb1ec02aaac862f"
+  integrity sha512-sY2B5Qyl46ZzfYDegrl8GBCzdawSLT4ThM9b9F+aDYUrAG2zCOyMbd2Tq34mS1g4ZKBfjRlzOohQMxx28x6wJg==
 
 case@1.6.3, case@^1.6.3:
   version "1.6.3"
@@ -2804,16 +2804,16 @@ case@1.6.3, case@^1.6.3:
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 cdk-amazon-chime-resources@latest:
-  version "2.4.9"
-  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.4.9.tgz#717b01d38f33ced9b05608be3f294d37c5d48537"
-  integrity sha512-SkWNxNI/Fd92nPJocRz/Wnb8z0rgxG2Tb+q6TpCFQDzI9p1vba9Vz1Gvx8buzcAZDCj7DHM3RMomIp54R1S4qQ==
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.4.10.tgz#d56db1ade78687ad7f66c62faebcecff95439141"
+  integrity sha512-rhmiiq4IkhFig89bV0iQPekTObCtxNLD0seWRadHazXDAkgX/hkZC5+mYSJZ1bqt6VdTAao6GAAJ+Jth0n8XFA==
   dependencies:
-    "@aws-sdk/client-chime" "^3.344.0"
+    "@aws-sdk/client-chime" "^3.345.0"
     "@aws-sdk/client-chime-sdk-identity" latest
     "@aws-sdk/client-chime-sdk-media-pipelines" latest
     "@aws-sdk/client-chime-sdk-messaging" latest
     "@aws-sdk/client-chime-sdk-voice" latest
-    "@aws-sdk/client-ssm" "^3.344.0"
+    "@aws-sdk/client-ssm" "^3.345.0"
     "@types/aws-lambda" "^8.10.115"
     aws-lambda "^1.0.7"
 
@@ -2993,9 +2993,9 @@ console-control-strings@^1.1.0:
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
 constructs@^10.0.5:
-  version "10.2.41"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.2.41.tgz#090e725b84d2da59ddb9e5c782f9678a0c49257a"
-  integrity sha512-csg/lxYKHA3meQX4JWs7EiTAtVYl681jTl8VxCK7jMfzbH5RzRsCA09HwYzslarQcFCSZyUMcgHVvZhUyABjAA==
+  version "10.2.42"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.2.42.tgz#881d1746dbb747586adb702b70d8c502b5c796da"
+  integrity sha512-QTy50blEmjrHexraR4JmxJtA7YCQ2p/IaDXiXNfy8lYNYnWQbp5YbAhDG1BSYvoRRgru/kB9CTlGtiLd9x3aUQ==
 
 conventional-changelog-config-spec@^2.1.0:
   version "2.1.0"
