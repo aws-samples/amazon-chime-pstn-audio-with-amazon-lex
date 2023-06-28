@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@aashutoshrathi/word-wrap@^1.2.3":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.5.tgz#383aeebd5c176c320d6364fb869669559bbdbac9"
-  integrity sha512-plhoNEfSVdHMKXQyAxvH0Zyv3/4NL8r6pwgMQdmHR2vBUXn2t74PN2pBRppqKUa6RMT0yldyvOHG5Dbjwy2mBQ==
-
 "@ampproject/remapping@^2.2.0":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.1.tgz#99e8e11851128b8702cd57c33684f1d0f260b630"
@@ -355,7 +350,7 @@
     "@smithy/types" "^1.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-ssm@^3.361.0":
+"@aws-sdk/client-ssm@^3.360.0":
   version "3.361.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-ssm/-/client-ssm-3.361.0.tgz#2a766366e08655241822cd06b4250c430e39adc9"
   integrity sha512-CcNwvpn/HgpJOU1vdZHBKfW5qc4WcpfYx+6RCiDn7c9uRURWFGlSTieXsu4y9PNq6JhHI+N1E30XIxTMLK2c8Q==
@@ -2766,16 +2761,16 @@ case@1.6.3, case@^1.6.3:
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 cdk-amazon-chime-resources@latest:
-  version "2.4.22"
-  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.4.22.tgz#52aa21c576ebe92fff660d4bd883c533ff126726"
-  integrity sha512-EIASqpTQ1YAmb71R8cF4OOLv3VyjCoPg7qqlt6J8/2wbuCvftBpC+6c+lxiVe5QoQs5EyDJjkl+PDh9DQRe59A==
+  version "2.4.21"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.4.21.tgz#1dce5ceb82e9f1da68e6751f99db36a752c32443"
+  integrity sha512-71NZ0/eSAK0oCiJZTjcjaUh53z6ZwOzfFphQQQFVDhHv3jAxSRLoS7PhIfY1tX6kvkC4LjR6FkQlZ67Vu38mcg==
   dependencies:
     "@aws-sdk/client-chime" "^3.360.0"
     "@aws-sdk/client-chime-sdk-identity" latest
     "@aws-sdk/client-chime-sdk-media-pipelines" latest
     "@aws-sdk/client-chime-sdk-messaging" latest
     "@aws-sdk/client-chime-sdk-voice" latest
-    "@aws-sdk/client-ssm" "^3.361.0"
+    "@aws-sdk/client-ssm" "^3.360.0"
     "@types/aws-lambda" "^8.10.119"
     aws-lambda "^1.0.7"
 
@@ -5541,6 +5536,7 @@ optionator@^0.9.1:
     levn "^0.4.1"
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
+    word-wrap "^1.2.3"
 
 p-cancelable@^3.0.0:
   version "3.0.0"

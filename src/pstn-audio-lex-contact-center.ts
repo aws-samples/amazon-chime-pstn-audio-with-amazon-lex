@@ -87,6 +87,10 @@ export class LexContactCenter extends Stack {
     new CfnOutput(this, 'logGroups', {
       value: '/var/log/amazon-chime-sdk-lex/',
     });
+
+    new CfnOutput(this, 'logGroups', {
+      value: '/var/log/amazon-chime-sdk-lex/',
+    });
   }
 }
 
