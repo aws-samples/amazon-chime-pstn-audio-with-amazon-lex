@@ -15,7 +15,9 @@ exports.handler = async (event, context, callback) => {
       console.log('NEW INBOUND CALL');
       await putInfo(event);
       startBotConversationAction.Parameters.Configuration.SessionState.SessionAttributes.phoneNumber =
-        event.CallDetails.Participants[0].From;
+        event.CallDetails.Participants[0].SipHeaders[
+          'X-Original-Calling-Number'
+        ];
       actions = [startBotConversationAction];
       break;
     case 'RINGING':
