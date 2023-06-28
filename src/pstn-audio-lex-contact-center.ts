@@ -83,7 +83,6 @@ export class LexContactCenter extends Stack {
     new CfnOutput(this, 'websocket', {
       value: 'ws://' + vpc.serverEip.ref + ':8088/ws',
     });
-
     new CfnOutput(this, 'logGroups', {
       value: '/var/log/amazon-chime-sdk-lex/',
     });
