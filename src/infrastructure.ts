@@ -6,7 +6,6 @@ import {
   MethodLoggingLevel,
 } from 'aws-cdk-lib/aws-apigateway';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
@@ -18,13 +17,10 @@ interface InfrastructureProps {
 
 export class Infrastructure extends Construct {
   public readonly queryAPI: RestApi;
-  public readonly asteriskEip: ec2.CfnEIP;
   public readonly callQueryLambda: NodejsFunction;
 
   constructor(scope: Construct, id: string, props: InfrastructureProps) {
     super(scope, id);
-
-    this.asteriskEip = new ec2.CfnEIP(this, 'asteriskEip');
 
     const infrastructureRole = new iam.Role(this, 'infrastructureRole', {
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),

@@ -24,7 +24,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   deps: ['cdk-amazon-chime-resources@latest', '@aws-sdk/client-lex-runtime-v2'],
   scripts: {
     launch:
-      'yarn && yarn projen && yarn build && yarn cdk bootstrap && yarn cdk deploy -O site/src/cdk-outputs.json',
+      'yarn && yarn projen && yarn build && yarn cdk bootstrap && yarn cdk deploy --no-rollback -O site/src/cdk-outputs.json',
   },
 });
 

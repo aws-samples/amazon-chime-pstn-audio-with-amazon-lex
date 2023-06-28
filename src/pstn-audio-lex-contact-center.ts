@@ -1,6 +1,14 @@
 import { App, CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { Asterisk, Chime, Database, Infrastructure, Lex } from './index';
+import {
+  AmazonChimeSDKSMAResources,
+  AmazonChimeSDKVoiceResources,
+  Database,
+  Infrastructure,
+  Lex,
+  ServerResources,
+  VPCResources,
+} from './index';
 
 export class LexContactCenter extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
@@ -16,29 +24,39 @@ export class LexContactCenter extends Stack {
       callerTable: database.callerTable,
     });
 
-    const asterisk = new Asterisk(this, 'Asterisk', {
+    const vpc = new VPCResources(this, 'VPC');
+
+    const amazonChimeSdkVoiceResources = new AmazonChimeSDKVoiceResources(
+      this,
+      'AmazonChimeSDKVoice',
+      { serverEip: vpc.serverEip },
+    );
+
+    const server = new ServerResources(this, 'Server', {
       apiUrl: infrastructure.queryAPI.url,
-      asteriskEip: infrastructure.asteriskEip,
+      serverEip: vpc.serverEip,
+      vpc: vpc.vpc,
+      voiceSecurityGroup: vpc.voiceSecurityGroup,
+      sshSecurityGroup: vpc.sshSecurityGroup,
+      logLevel: 'INFO',
+      albSecurityGroup: vpc.albSecurityGroup,
+      applicationLoadBalancer: vpc.applicationLoadBalancer,
+      publicSshKey: 'xxxxxxxxx',
+      pstnPhoneNumber: amazonChimeSdkVoiceResources.pstnPhoneNumber,
+      pstnVoiceConnector: amazonChimeSdkVoiceResources.pstnVoiceConnector,
+      smaVoiceConnector: amazonChimeSdkVoiceResources.smaVoiceConnector,
     });
 
-    const chime = new Chime(this, 'Chime', {
+    new AmazonChimeSDKSMAResources(this, 'AmazonChimeSDKSMA', {
       callerTable: database.callerTable,
-      smaVoiceConnectorHostname: asterisk.smaVoiceConnectorHostname,
-      lexBotAliasId: lex.lexBotAliasId,
+      smaVoiceConnector:
+        amazonChimeSdkVoiceResources.smaVoiceConnector.voiceConnectorId,
       lexBotId: lex.lexBotId,
+      lexBotAliasId: lex.lexBotAliasId,
     });
 
-    new CfnOutput(this, 'PSTN VoiceConnector ARN', {
-      value: asterisk.smaVoiceConnectorArn,
-    });
-    new CfnOutput(this, 'SMA VoiceConnector ARN', {
-      value: asterisk.smaVoiceConnectorArn,
-    });
     new CfnOutput(this, 'callQueryLambda', {
       value: infrastructure.callQueryLambda.functionName,
-    });
-    new CfnOutput(this, 'smaHandlerLambda', {
-      value: chime.smaHandlerLambda.functionName,
     });
     new CfnOutput(this, 'queryAPI', {
       value: infrastructure.queryAPI.restApiId,
@@ -51,18 +69,19 @@ export class LexContactCenter extends Stack {
       value: lex.lexBotAliasId,
     });
     new CfnOutput(this, 'ssmCommand', {
-      value: `aws ssm start-session --target ${asterisk.instanceId}`,
+      value: `aws ssm start-session --target ${server.instanceId}`,
     });
     new CfnOutput(this, 'voiceConnectorPhone', {
-      value: asterisk.pstnVoiceConnectorPhone,
+      value: amazonChimeSdkVoiceResources.pstnPhoneNumber.phoneNumber,
     });
+
     new CfnOutput(this, 'API_URL', { value: infrastructure.queryAPI.url });
     new CfnOutput(this, 'sipuri', {
-      value: 'agent@' + infrastructure.asteriskEip.ref,
+      value: 'agent@' + vpc.serverEip.ref,
     });
-    new CfnOutput(this, 'password', { value: asterisk.instanceId });
+    new CfnOutput(this, 'password', { value: server.instanceId });
     new CfnOutput(this, 'websocket', {
-      value: 'ws://' + infrastructure.asteriskEip.ref + ':8088/ws',
+      value: 'ws://' + vpc.serverEip.ref + ':8088/ws',
     });
 
     new CfnOutput(this, 'logGroups', {
