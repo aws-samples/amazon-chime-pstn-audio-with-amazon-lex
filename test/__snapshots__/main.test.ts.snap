@@ -196,7 +196,7 @@ Object {
     },
     "password": Object {
       "Value": Object {
-        "Ref": "ServerInstanceE518391Bdf8a53e8d048decc",
+        "Ref": "ServerInstanceE518391B3f397fb84abf6f47",
       },
     },
     "queryAPI": Object {
@@ -224,7 +224,7 @@ Object {
           Array [
             "aws ssm start-session --target ",
             Object {
-              "Ref": "ServerInstanceE518391Bdf8a53e8d048decc",
+              "Ref": "ServerInstanceE518391B3f397fb84abf6f47",
             },
           ],
         ],
@@ -589,7 +589,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "35eb070e08b230f1831e833e555d30606bb43986da3b7762813144f87e0ca629.zip",
+          "S3Key": "d767fea7c72e9656c8a00f2e13b8d480e043b2ef3656716723aad2c525b5fa90.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -891,7 +891,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "35eb070e08b230f1831e833e555d30606bb43986da3b7762813144f87e0ca629.zip",
+          "S3Key": "d767fea7c72e9656c8a00f2e13b8d480e043b2ef3656716723aad2c525b5fa90.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -1337,7 +1337,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "35eb070e08b230f1831e833e555d30606bb43986da3b7762813144f87e0ca629.zip",
+          "S3Key": "d767fea7c72e9656c8a00f2e13b8d480e043b2ef3656716723aad2c525b5fa90.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -1632,7 +1632,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "35eb070e08b230f1831e833e555d30606bb43986da3b7762813144f87e0ca629.zip",
+          "S3Key": "d767fea7c72e9656c8a00f2e13b8d480e043b2ef3656716723aad2c525b5fa90.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -1908,7 +1908,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "35eb070e08b230f1831e833e555d30606bb43986da3b7762813144f87e0ca629.zip",
+          "S3Key": "d767fea7c72e9656c8a00f2e13b8d480e043b2ef3656716723aad2c525b5fa90.zip",
         },
         "Description": "src/resources/pstn/pstn.lambda.ts",
         "Environment": Object {
@@ -3567,12 +3567,12 @@ Object {
           "Ref": "VPCserverEip15B58F30",
         },
         "InstanceId": Object {
-          "Ref": "ServerInstanceE518391Bdf8a53e8d048decc",
+          "Ref": "ServerInstanceE518391B3f397fb84abf6f47",
         },
       },
       "Type": "AWS::EC2::EIPAssociation",
     },
-    "ServerInstanceE518391Bdf8a53e8d048decc": Object {
+    "ServerInstanceE518391B3f397fb84abf6f47": Object {
       "CreationPolicy": Object {
         "ResourceSignal": Object {
           "Count": 1,
@@ -3630,9 +3630,9 @@ same => n,NoOp(\${CALL_ROUTE})
 same => n,GotoIf($[\${CALL_ROUTE} = CallAgent]?callAgent:disconnect)
 
 same => n(callAgent),NoOp(CallAgent)
-same => n,GotoIf($[\${DEVICE_STATE(PJSIP/agent)}=UNAVAILABLE]?noAgent:callAgent)
+same => n,GotoIf($[\${DEVICE_STATE(PJSIP/agent)}=UNAVAILABLE]?noAgent:agentAvailable)
 
-same => n(callAgent),NoOp(CallAgent)
+same => n(agentAvailable),NoOp(CallAgent)
 same => n,Dial(PJSIP/agent,,b(handler^addheader^1(\${CALL_ID})))
 same => n,Hangup()
 
@@ -3641,6 +3641,7 @@ same => n,Playback(/var/lib/asterisk/sounds/en/noAgent)
 same => n,Hangup()
 
 same => n(disconnect),NoOp(Disconnect)
+same => n,Playback(/var/lib/asterisk/sounds/en/disconnecting)
 same => n,Hangup()
 
 [from-voiceConnector]
@@ -3978,6 +3979,7 @@ cd /etc/polly/
 pip3 install boto3
 
 python3 /etc/polly/createWav.py -file noAgent -text \\"Sorry, no agent is available to take your call at this time. Please try again later.\\"
+python3 /etc/polly/createWav.py -file disconnecting -text \\"Thanks for calling.  We are disconnecting you now.\\"
 
 usermod -aG audio,dialout asterisk
 chown -R asterisk.asterisk /etc/asterisk
@@ -4184,7 +4186,7 @@ curl \\"https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip\\" -o \\"awscl
 unzip -q awscliv2.zip
 ./aws/install
 echo AWS CLI installed
-# fingerprint: 4e1dd4facce3942f
+# fingerprint: d3347e516be61774
 (
   set +e
   /opt/aws/bin/cfn-init -v --region ",
@@ -4195,7 +4197,7 @@ echo AWS CLI installed
                 Object {
                   "Ref": "AWS::StackName",
                 },
-                " --resource ServerInstanceE518391Bdf8a53e8d048decc --url https://cloudformation.",
+                " --resource ServerInstanceE518391B3f397fb84abf6f47 --url https://cloudformation.",
                 Object {
                   "Ref": "AWS::Region",
                 },
@@ -4216,7 +4218,7 @@ echo AWS CLI installed
                 Object {
                   "Ref": "AWS::StackName",
                 },
-                " --resource ServerInstanceE518391Bdf8a53e8d048decc --url https://cloudformation.",
+                " --resource ServerInstanceE518391B3f397fb84abf6f47 --url https://cloudformation.",
                 Object {
                   "Ref": "AWS::Region",
                 },
