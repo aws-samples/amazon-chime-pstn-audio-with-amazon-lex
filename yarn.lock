@@ -256,7 +256,7 @@
     "@smithy/util-utf8" "^2.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-chime@^3.377.0":
+"@aws-sdk/client-chime@^3.378.0":
   version "3.378.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-chime/-/client-chime-3.378.0.tgz#2d9a2b19e6def2daf852a5f9f9e5d0f9f640bbbe"
   integrity sha512-J3NrNaIofYtdfnubN7couirLcAEnFhhIXHPzH4rOgcsrX/3ZVIkcIfQ3khvAnRL6pApCm9FD9+8oSashVaFWDA==
@@ -347,7 +347,7 @@
     "@smithy/util-utf8" "^2.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-ssm@^3.377.0":
+"@aws-sdk/client-ssm@^3.378.0":
   version "3.378.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-ssm/-/client-ssm-3.378.0.tgz#9e64943f27cfd4e0b7832ee37aa5d6c4b3c0ad1d"
   integrity sha512-mCGAs4bs/gPfStf4pDrpUx431/qo2riOLzf9vhS4cw1xQb+mhaor3pDcMV/auNw2WpALHIrDpKGomvM+DwRNSg==
@@ -2538,9 +2538,9 @@ aws-lambda@^1.0.7:
     watchpack "^2.0.0-beta.10"
 
 aws-sdk@^2.814.0:
-  version "2.1423.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1423.0.tgz#e6491f7dbb7dcb5c1ec92a4c536165b136c432cd"
-  integrity sha512-6Z6CMME7nVwHNxchxGpP3ZiUkuxU5hkqEQplV2sgfgOk6XKazu7zqKQ4Iy6+OaXPNWHZnIsvfxFvBNOWTy/cPA==
+  version "2.1424.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1424.0.tgz#74dd3e865b30cc478df188a6520490171ae8bc56"
+  integrity sha512-F6+wIp/K4UCg4sWQmQuuFReRNA0eYaPTHjt2is5uHE+2Vk2ojBbwatahbUnEB335tRZhndKf4UwyoyuuAdakMw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2790,16 +2790,16 @@ case@1.6.3, case@^1.6.3:
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 cdk-amazon-chime-resources@latest:
-  version "2.4.43"
-  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.4.43.tgz#e98ef1ee4bfe19f1bec499e9c4aac4748690a78d"
-  integrity sha512-KezKosNxJi0q17WUdywEIvyOYE1Q/b8KFj03uJgmLWdBSAjIlKzj7R4ffdgL3gQxqwAn8778ck+h4oB1AjPu+w==
+  version "2.4.44"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-2.4.44.tgz#e09f19dc8389144c4fd8f95d021b1bd73471361e"
+  integrity sha512-qlyIGCq6z1sLz5WSR8cjB41EuHe6PBHkRvnkOh/0VD8LsWCwtbwKj213WR5S2p9FfFp5MOyV+jViu6KxpeHa4g==
   dependencies:
-    "@aws-sdk/client-chime" "^3.377.0"
+    "@aws-sdk/client-chime" "^3.378.0"
     "@aws-sdk/client-chime-sdk-identity" latest
     "@aws-sdk/client-chime-sdk-media-pipelines" latest
     "@aws-sdk/client-chime-sdk-messaging" latest
     "@aws-sdk/client-chime-sdk-voice" latest
-    "@aws-sdk/client-ssm" "^3.377.0"
+    "@aws-sdk/client-ssm" "^3.378.0"
     "@types/aws-lambda" "^8.10.119"
     aws-lambda "^1.0.7"
 
@@ -3175,9 +3175,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.4.431:
-  version "1.4.472"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.472.tgz#5556e50609a0d66d45e7d96c69b0e7a45c402f88"
-  integrity sha512-JL+vQaO4/3mnE68YLaO6tS61YFTlQp8/9JJj1kMP0CL9GHjLYt8t3T0aA3sW3PvdiXjnVeaZ6Kf0mGtt9+2j+Q==
+  version "1.4.475"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.475.tgz#2fee0e2a70cc1538b94f7f90aabcc436e4dcc827"
+  integrity sha512-mTye5u5P98kSJO2n7zYALhpJDmoSQejIGya0iR01GpoRady8eK3bw7YHHnjA1Rfi4ZSLdpuzlAC7Zw+1Zu7Z6A==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -5724,10 +5724,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.71.151:
-  version "0.71.151"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.151.tgz#064e31a69ed4e15f43d80159a50f3e78026a6007"
-  integrity sha512-usmUNgdWPeDcITu9LpMbkwr4qYwiiVQfrJkz89f4WvPyt/ckSsGDi+e42zUkVS2ZjhGMQUogl0OerkIphSPvWA==
+projen@^0.71.153:
+  version "0.71.153"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.153.tgz#e984fe7c79ff977d351a103f7592906464a1a0af"
+  integrity sha512-IIMtKZts0NBmkmLY5WWx0vUYv35GP7gGo2QmdU7bV+IFoUxQXDJOf0JStp07XF5VCcL4xcTcl6B+Mn1M5+F3Mw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
