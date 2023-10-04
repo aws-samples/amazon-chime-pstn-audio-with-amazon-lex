@@ -289,8 +289,8 @@ export class ServerResources extends Construct {
     // );
 
     new CfnEIPAssociation(this, 'EIP Association', {
-      eip: props.serverEip.ref,
       instanceId: ec2Instance.instanceId,
+      allocationId: props.serverEip.attrAllocationId,
     });
 
     this.instanceId = ec2Instance.instanceId;
